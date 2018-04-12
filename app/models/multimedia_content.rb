@@ -1,0 +1,2 @@
+class MultimediaContent < ApplicationRecord
+end

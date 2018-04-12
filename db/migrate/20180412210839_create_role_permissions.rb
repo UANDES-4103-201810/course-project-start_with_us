@@ -1,8 +1,8 @@
 class CreateRolePermissions < ActiveRecord::Migration[5.1]
   def change
     create_table :role_permissions do |t|
-      t.role :roles
-      t.permission :permissions
+      t.belongs_to :role
+      t.belongs_to :permission
 
       t.timestamps
     end
