@@ -126,10 +126,10 @@ ActiveRecord::Schema.define(version: 20180412211920) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
-    t.integer "roles_id"
+    t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["roles_id"], name: "index_users_on_roles_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
 end
