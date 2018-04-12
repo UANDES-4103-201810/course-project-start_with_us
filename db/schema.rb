@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412211920) do
+ActiveRecord::Schema.define(version: 20180412233928) do
 
   create_table "card_types", force: :cascade do |t|
     t.string "company"
@@ -126,10 +126,26 @@ ActiveRecord::Schema.define(version: 20180412211920) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
-    t.integer "role_id"
+    t.integer "roles_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["roles_id"], name: "index_users_on_roles_id"
+  end
+
+  create_table "wishlist_projects", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_wishlist_projects_on_project_id"
+    t.index ["user_id"], name: "index_wishlist_projects_on_user_id"
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
 end
