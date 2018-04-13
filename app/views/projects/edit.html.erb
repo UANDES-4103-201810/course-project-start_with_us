@@ -1,6 +1,19 @@
 <h1>Editing Project</h1>
 
-<%= render 'form', project: @project %>
+<%= form_for @project, method: "patch" do |pj| %>
+<label>Title</label>
+<%= pj.text_field :title %>
+<label>Description</label>
+<%= pj.text_field :description %>
+<label>Goal Amount</label>
+<%= pj.text_field :goal_amount %>
+<label>Status</label>
+<%= pj.text_field :status %>
+<label>Delivery Date</label>
+<%= pj.date_select :delivery_date %>
+<%= pj.submit "Update" %>
+<% end %>
 
 <%= link_to 'Show', @project %> |
 <%= link_to 'Back', projects_path %>
+

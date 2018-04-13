@@ -2,32 +2,32 @@
 
 <p>
   <strong>Users:</strong>
-  <%= @project.users %>
+  <%= @project.user[:email] %>
 </p>
 
 <p>
-  <strong>String:</strong>
-  <%= @project.string %>
+  <strong>Title:</strong>
+  <%= @project.title %>
 </p>
 
 <p>
-  <strong>String:</strong>
-  <%= @project.string %>
+  <strong>Description:</strong>
+  <%= @project.description %>
 </p>
 
 <p>
-  <strong>Integer:</strong>
-  <%= @project.integer %>
+  <strong>Goal Amount:</strong>
+  <%= @project.goal_amount %>
 </p>
 
 <p>
-  <strong>String:</strong>
-  <%= @project.string %>
+  <strong>Status:</strong>
+  <%= @project.status %>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @project.date %>
+  <strong>Delivery Date:</strong>
+  <%= @project.delivery_date %>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

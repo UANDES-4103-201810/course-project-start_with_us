@@ -1,5 +1,19 @@
 <h1>New Project</h1>
 
-<%= render 'form', project: @project %>
+<%= form_for @project, method: "post" do |pj| %>
+  <label>User ID</label>
+  <%= pj.text_field :user_id %>
+  <label>Title</label>
+  <%= pj.text_field :title %>
+  <label>Description</label>
+  <%= pj.text_field :description %>
+  <label>Goal Amount</label>
+  <%= pj.text_field :goal_amount %>
+  <label>Status</label>
+  <%= pj.text_field :status %>
+  <label>Delivery Date</label>
+  <%= pj.date_select :delivery_date %>
+  <%= pj.submit "Create" %>
+<% end %>
 
 <%= link_to 'Back', projects_path %>
