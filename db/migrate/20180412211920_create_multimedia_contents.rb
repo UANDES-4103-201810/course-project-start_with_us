@@ -5,7 +5,6 @@ class CreateMultimediaContents < ActiveRecord::Migration[5.1]
       t.references :profile, foreign_key: true
       t.references :item, foreign_key: true
       t.string :data_type
-      t.attachment :image
 
       t.timestamps
     end
