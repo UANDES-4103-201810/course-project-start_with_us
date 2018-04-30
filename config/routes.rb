@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :projects
   get '/', to: "home#index"
   get 'new_user', to: "user#new_user"

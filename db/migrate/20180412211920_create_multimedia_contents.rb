@@ -1,11 +1,10 @@
 class CreateMultimediaContents < ActiveRecord::Migration[5.1]
   def change
     create_table :multimedia_contents do |t|
-      t.belongs_to :project
-      t.belongs_to :profile
-      t.belongs_to :item
+      t.references :project, foreign_key: true
+      t.references :profile, foreign_key: true
+      t.references :item, foreign_key: true
       t.string :data_type
-      t.attachment :image
 
       t.timestamps
     end

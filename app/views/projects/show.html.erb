@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Users:</strong>
+  <strong class="">Users:</strong>
   <%= @project.user[:email] %>
 </p>
 
@@ -30,5 +30,9 @@
   <%= @project.delivery_date %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<p>
+  <strong>Image:</strong>
+  <img src="<%= @content.image.url(:thumb) %>" >
+</p>
+<%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %> |
 <%= link_to 'Back', projects_path %>

@@ -1,18 +1,8 @@
 class MultimediaContent < ApplicationRecord
-  belongs_to :project
-  belongs_to :profile
-  belongs_to :item
-  validates :belongs_to_just_one
+  belongs_to :project, optional: true
+  belongs_to :profile, optional: true
+  belongs_to :item, optional: true
+  has_attached_file :image, styles: {galery: "800x600#", high: "600x600#", medium: "300x300#", thumb: "200x120#" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/x
 
-  def belongs_to_just_one
-    if self.project == nil  and self.profile == nil and self.item != nil
-      return true
-    elsif self.profile == nil and self.project != nil and self.item == nil
-      return true
-    elsif self.profile != nil and self.project == nil  and self.item == nil
-      return true
-    else
-      return false
-    end
-  end
 end
