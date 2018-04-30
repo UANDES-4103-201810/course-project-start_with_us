@@ -1,7 +1,13 @@
 <%= form_for @login, url: '/login', method: 'post' do |login| %>
-
-<p>Email: </p><%= login.text_field :email %>
-<p>Password: </p> <%= login.text_field :password %>
-<%= submit_tag 'Login' %>
-
+<div style="margin-left: 20%;margin-top: 5%;width: 50%;border: 5px solid grey; padding: 10px;">
+  <div class="form-group">
+    <label>Email: </label><%= login.text_field :email, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <label>Password: </label> <%= login.text_field :password, :class => "form-control" %>
+  </div>
+  <div style="margin-top: 10px;">
+    <%= submit_tag 'Login', :class => "btn btn-primary" %>
+  </div>
+</div>
 <% end %>
