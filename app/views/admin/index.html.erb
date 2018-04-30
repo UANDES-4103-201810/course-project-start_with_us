@@ -1,8 +1,9 @@
 <div class="col-sm-12" style="padding: 10px 30px 10px 30px">
 <h1>  Admin</h1>
 <hr>
+
 <div class="container center-block" style="margin: 0px 20px 0px 10px; padding-right: 50px">
-  <ul class="nav nav-tabs center">
+  <ul class="nav nav-tabs">
     <li class="active"><a href="#">Users</a></li>
     <li><a href="#">Projects</a></li>
 
@@ -12,31 +13,15 @@
     <thead>
     <tr>
       <th>Name</th>
+      <th>Email</th>
       <th>Role</th>
-      <th>Password</th>
-      <th>Last Access</th>
-
-      <th>Edit</th>
+      <th>Delete</th>
 
 
     </tr>
     </thead>
-    <tbody>
-    <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>john@example.com</td>
-    </tr>
-    <tr>
-      <td>Mary</td>
-      <td>Moe</td>
-      <td>mary@example.com</td>
-    </tr>
-    <tr>
-      <td>July</td>
-      <td>Dooley</td>
-      <td>july@example.com</td>
-    </tr>
+    <tbody id="tbody">
+
     </tbody>
   </table>
 </div>
@@ -50,7 +35,32 @@
 
 <script>
     $( document ).ready(function() {
+        $.ajax({url: '/admin/get_users', success: function(result){
 
+                var tbody=$("#tbody")
+                 for(var i=0;i<result.length;i++){
+                    var tr=document.createElement('tr')
+
+                    var user_object=result[i]
+                     var user_name;
+                    if (user_object["name"]){
+                        user_name=user_object["name"]
+                    }
+                    else{
+
+                        user_name="Sin perfil definido"
+                    }
+
+                    var user_email=user_object["email"]
+                    var user_role=user_object["role_name"];
+                    var delete_button=$("<button type=\"button\" class=\"btn btn-danger btn-sm\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
+                    tr.innerHTML+="<td>"+user_name+"</td><td>"+user_email+"</td><td>"+user_role+"</td>";
+                    tbody.append(tr);
+                    var user_id=user_object["id"]
+
+             
+                }
+            }});
     });
 
 </script>
