@@ -21,8 +21,10 @@
     </style>
   </head>
 
-<div>
+
 <body style="padding:10px 10px 10px 10px;">
+<div class="col-sm">
+<div class="row">
 <div class="container" >
   <nav class="navbar navbar-inverse navbar-fixed-top" >
     <div class="container-fluid">
@@ -51,12 +53,15 @@
   </nav>
 
 </div>
-</body>
-  <div class="container" style="margin: 20px 30px 20px 30px;  min-height: 400px; ;border-left: 1px solid gray;border-right: 1px solid dimgray">
+</div>
+</div>
+<br>
+
     <%= yield %>
 
-</div>
 
+
+</body>
 <%# commented line
 <footer style="position: relative">
   <div class="navbar navbar-inverse bottom" role="navigation">
@@ -69,5 +74,5 @@
 </footer></footer>
 
 -%>
-</div>
+
 </html>
