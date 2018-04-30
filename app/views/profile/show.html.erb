@@ -1,0 +1,10 @@
+<%= form_for @user, url: "/profile" do |user| %>
+  <%= user.fields_for :profile do |profile| %>
+    <%= profile.fields_for :multimedia_content do |img| %>
+      <%= image_tag(img)
+    <% end %>
+    <p>Name</p><%= profile.text_field :name, :readonly=>true %>
+    <p>Last Lame</p><%= profile.text_field :last_name, :readonly=>true %>
+    <p>About Me</p><%= profile.text_field :about_me, :readonly=>true %>
+  <% end %>
+<% end %>
