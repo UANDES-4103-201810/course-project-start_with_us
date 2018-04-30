@@ -1,14 +1,73 @@
 <!DOCTYPE html>
-<html>
   <head>
     <title>CourseProjectStrarWithUs</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <style>
+      .nav>li>a {
+        position: relative;
+        display: block;
+
+        font-size: 10px;
+      }
+        
+        
+
+
+    </style>
   </head>
 
-  <body>
+<div>
+<body style="padding:10px 10px 10px 10px;">
+<div class="container" >
+  <nav class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Start with us <span class="sr-only">(current)</span></a></li>
+        <li><a class="navbar-link" href="#">Profile</a></li>
+        <li><a class="navbar-link" href="#">My Projects</a></li>
+        <li><a class="navbar-link" href="#">Admin</a></li>
+
+        <li><a class="navbar-link"  href="#">Log In/Out</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</div>
+</body>
+  <div class="container" style="margin: 20px 30px 20px 30px;  min-height: 400px; ;border-left: 1px solid gray;border-right: 1px solid dimgray">
     <%= yield %>
-  </body>
+
+</div>
+
+<%# commented line
+<footer style="position: relative">
+  <div class="navbar navbar-inverse bottom" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- content -->
+      </div>
+    </div>
+  </div>
+</footer></footer>
+
+-%>
+</div>
 </html>
