@@ -1,10 +1,23 @@
-<%= form_for @user, url: "/profile" do |user| %>
-  <%= user.fields_for :profile do |profile| %>
-    <%= profile.fields_for :multimedia_content do |img| %>
+<div class="center">
 
+  <%= form_for @user, url: "/profile" do |user| %>
+    <%= user.fields_for :profile do |profile| %>
+      <img src="<%= @content.image.url(:thumb) %>">
+      <div class="form-group">
+        <label>Name</label><%= profile.text_field :name, :class => "form-control", :readonly => true %>
+      </div>
+      <div class="form-group">
+      <label>Last Lame</label><%= profile.text_field :last_name, :class => "form-control", :readonly => true %>
+      </div>
+      <div class="form-group">
+      <label>About Me</label><%= profile.text_field :about_me, :class => "form-control", :readonly => true %>
+      </div>
     <% end %>
-    <p>Name</p><%= profile.text_field :name, :readonly=>true %>
-    <p>Last Lame</p><%= profile.text_field :last_name, :readonly=>true %>
-    <p>About Me</p><%= profile.text_field :about_me, :readonly=>true %>
+    <table class="table">
+      <% @projects.each do |project| %>
+        <tr><%= project.text_field :title %></tr>
+      <% end %>
+    </table>
   <% end %>
-<% end %>
+
+</div>

@@ -13,6 +13,7 @@ class UserController < ApplicationController
                                   last_name: params[:user][:profile_attributes][:last_name],
                                   about_me: params[:user][:profile_attributes][:about_me])
   end
+
   def destroy
 
   end
