@@ -22,45 +22,26 @@
   </head>
 
 
-<body style="padding:10px 10px 10px 10px;">
-<div class="col-sm">
-<div class="row">
-<div class="container" >
-  <nav class="navbar navbar-inverse navbar-fixed-top" >
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Start with us <span class="sr-only">(current)</span></a></li>
-        <li><a class="navbar-link" href="#">Profile</a></li>
-        <li><a class="navbar-link" href="#">My Projects</a></li>
-        <li><a class="navbar-link" href="#">Admin</a></li>
-
-        <li><a class="navbar-link"  href="#">Log In/Out</a></li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
+<header style="padding:10px 10px 10px 10px;">
+<div class="nav_bar">
+  <div class="nav_buttons_container">
+    <a class="nav_bar_button" href="/">Start With Us</a>
+    <% if @is_admin %>
+      <a class="nav_bar_button" href="/admin">Admin</a>
+    <% end %>
+    <% if user_signed_in? %>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav_bar_button" %>
+      <a class="nav_bar_button" href="">Log Out</a>
+    <% else %>
+      <a class="nav_bar_button" href="/users/sign_in">Log In</a>
+    <% end %>
+    <a class="nav_bar_button" href="/profile"></a>
+  </div>
 </div>
-</div>
-</div>
-<br>
 
-    <%= yield %>
-
-
-
+</header>
+<body style="background: url(<%= asset_path 'space.jpg' %>); background-size: 100% 100% center no repeat;" >
+<%= yield %>
 </body>
 <%# commented line
 <footer style="position: relative">
