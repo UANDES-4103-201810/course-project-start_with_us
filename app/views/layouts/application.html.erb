@@ -29,18 +29,20 @@
     <% if @is_admin %>
       <a class="nav_bar_button" href="/admin">Admin</a>
     <% end %>
+    <a class="nav_bar_button" href="/projects">Projects</a>
     <% if user_signed_in? %>
+      <a class="nav_bar_button" href="/profile/<%= current_user.id %>">Profile</a>
+
       <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav_bar_button" %>
-      <a class="nav_bar_button" href="">Log Out</a>
     <% else %>
       <a class="nav_bar_button" href="/users/sign_in">Log In</a>
     <% end %>
-    <a class="nav_bar_button" href="/profile"></a>
+
   </div>
 </div>
 
 </header>
-<body id="body_main" style="background: url(<%= asset_path 'background.jpg' %>) center center no-repeat ; background-size:  100% 100% ;" >
+<body id="body_main" style="background: url(<%= asset_path 'background.jpg' %>) center center no-repeat ; background-size:  100% 100% ;overflow-x: hidden" >
 <%= yield %>
 </body>
 <footer style="height: 50px;width: 100%;">
@@ -66,9 +68,9 @@
     {
         var body = $("#body_main");
         var size = body.height();
-        if (size < 700)
+        if (size < 1200)
         {
-            body.css("height","700px")
+            body.css("height","1200px")
         }
     }
     $(document).ready(function () {

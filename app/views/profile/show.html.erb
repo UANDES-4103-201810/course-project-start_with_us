@@ -1,14 +1,22 @@
 <div class="profile">
-
-      <img src="<%= @content.image.url(:thumb) %>">
+  <div style="width: 10%;margin-left:90%;">
+    <% if @user.id == current_user.id %>
+      <%= link_to "Edit Profile", '/edit_profile/' + current_user.id.to_s, class: "btn btn-success" %>
+      <div style="height: 5px"></div>
+      <%= link_to "My Projects", '/user_projects/' + current_user.id.to_s, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <% if @content != nil %>
+      <img style="margin-left: 35%;margin-top: -80px" src="<%= @content.image.url(:medium) %>">
+  <% end %>
       <div class="form-group">
-        <label>Name:  </label><br/><%= @user.profile[:name] %>
+        <label style="font-size: 20px">Name:  </label><div><%= @user.profile[:name] %></div>
       </div>
       <div class="form-group">
-      <label>Last Name:  </label><br/><%= @user.profile[:last_name] %>
+        <label style="font-size: 20px">Last Name:  </label><div><%= @user.profile[:last_name] %></div>
       </div>
       <div class="form-group">
-      <label>About Me:  </label><br/><%= @user.profile[:about_me] %>
+        <label style="font-size: 20px" >About Me:  </label><div><%= @user.profile[:about_me] %></div>
       </div>
     <table class="table">
       <tr><th>Project Title</th></tr>

@@ -1,21 +1,58 @@
-<h1>New Project</h1>
+<div class="project_create_view">
+  <h1>New Project</h1>
 
-<%= form_for @project, method: "post" do |pj| %>
-  <label>User ID</label>
-  <%= pj.text_field :user_id %>
-  <label>Title</label>
-  <%= pj.text_field :title %>
-  <label>Description</label>
-  <%= pj.text_field :description %>
-  <label>Goal Amount</label>
-  <%= pj.text_field :goal_amount %>
-  <label>Status</label>
-  <%= pj.text_field :status %>
-  <label>Delivery Date</label>
-  <%= pj.date_select :delivery_date %>
-  <label>Image</label>
-  <%= pj.file_field :multimedia_content %>
-  <%= pj.submit "Create" %>
-<% end %>
+  <%= form_for @project, method: "post" do |pj| %>
+    <div>
+      <label>Title</label>
+      <%= pj.text_field :title %>
+    </div>
+    <div>
+      <label>Description</label><br />
+      <%= pj.text_area :description %>
+    </div>
+    <div>
+      <label>Goal Amount</label>
+      <%= pj.text_field :goal_amount %>
+    </div>
+    <div>
+      <label>Status</label>
+      <%= pj.text_field :status %>
+    </div>
+    <div>
+      <label>Delivery Date</label>
+      <%= pj.date_select :delivery_date %>
+    </div>
+    <label>Image</label>
+    <%= pj.file_field :multimedia_content %>
+    <br/>
+    <%= pj.fields_for :promises do |promise| %>
 
-<%= link_to 'Back', projects_path %>
+    <table id="items_table" class="table">
+      <thead>
+        <tr><th>Description</th><th>Quantity</th><th>Price</th></tr>
+      </thead>
+      <tbody style="color: black">
+
+      </tbody>
+    </table>
+      <script>
+          function AddPromises() {
+              var table = $("#items_table");
+              var row = '<tr><td><%= promise.text_field :description %></td><td><%= promise.text_field :quantity %></td><td><%= promise.text_field :price %></td></tr>';
+              table.append(row);
+          }
+
+          $(document).ready(function () {
+              $("#add_promise").click(function () {
+                  AddPromises();
+              });
+          });
+      </script>
+    <% end %>
+    <a id="add_promise" style="margin-bottom: 10px;" class="btn btn-primary">Add Promise</a> <br/>
+    <%= pj.submit "Create", :class=> "btn btn-success" %>
+  <% end %>
+    <br />
+  <%= link_to 'Back', projects_path, class: "btn btn-danger" %>
+</div>
+

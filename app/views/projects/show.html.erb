@@ -45,6 +45,21 @@
       <%= @project.delivery_date %>
     </p>
   </div>
-
+  <div class="my_row">
+    <strong>Promises</strong>
+  </div>
+  <% @project.promises.each do |promise| %>
+    <div class="my_row">
+      <div>
+        <%= promise.description %>
+      </div>
+      <div>Price:
+        <%= promise.price %>
+      </div>
+      <div>Quantity:
+        <%= promise.quantity %>
+      </div>
+    </div>
+  <% end %>
   <%= link_to 'Back', projects_path, class: "btn btn-danger" %>
 </div>
