@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_create :default_role
-  has_one :role
+  belongs_to :role
   has_one :profile
   has_many :projects
   accepts_nested_attributes_for :profile
