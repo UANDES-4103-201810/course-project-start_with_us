@@ -1,0 +1,35 @@
+
+<style>
+  .left{
+
+    margin-left: 40px;
+    width: 100%;
+
+  }
+
+    .left>.list-group>a{
+      background-color: rgba(0, 0, 0, 0.5)
+    }
+  .left>.list-group>a.selected{
+    background-color: rgba(0, 45, 94, 0.71)
+  }
+
+
+</style>
+
+
+<div class="row">
+
+  <div class="left">
+  <div class="list-group col-sm-2">
+    <a href="#" class="list-group-item selected">
+      <p class="list-group-item-text">My projects</p>
+    </a>
+    <a href="#" class="list-group-item">
+      <p class="list-group-item-text">My projects's Foundings</p>
+    </a>
+
+  </div>
+  </div>
+  <%= yield %>
+</div>

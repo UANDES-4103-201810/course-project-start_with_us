@@ -1,0 +1,33 @@
+
+<%= render 'aside_menu', selected_item:1 do %>
+  <div class="col-sm-8">
+    <div class="project_show_Table">
+      <h1 style="color: white;text-align: center;"> Projects by <%= @user.email %></h1>
+
+      <table class="table">
+        <tr><th>Project Title</th>
+
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <% @user.projects.each do |project| %>
+          <tr><td><%= link_to project[:title] ,project_url(project) %></td>
+            <td><%= link_to edit_project_url(project) do%>
+                <i class="glyphicon glyphicon-edit center"></i>
+              <% end %>
+            </td>
+            <td><%= link_to project_url(project), :method=> 'delete' do%>
+                <i class="glyphicon glyphicon-remove center"></i>
+              <% end %>
+            </td>
+
+          </tr>
+        <% end %>
+      </table>
+
+      <br>
+
+    </div>
+  </div>
+
+<% end %>
