@@ -40,9 +40,12 @@
 </div>
 
 </header>
-<body style="background: url(<%= asset_path 'space.jpg' %>); background-size: 100% 100% center no repeat;" >
+<body id="body_main" style="background: url(<%= asset_path 'background.jpg' %>) center center no-repeat ; background-size:  100% 100% ;" >
 <%= yield %>
 </body>
+<footer style="height: 50px;width: 100%;">
+
+</footer>
 <%# commented line
 <footer style="position: relative">
   <div class="navbar navbar-inverse bottom" role="navigation">
@@ -56,4 +59,19 @@
 
 -%>
 
+
 </html>
+<script>
+    function BodySize()
+    {
+        var body = $("#body_main");
+        var size = body.height();
+        if (size < 700)
+        {
+            body.css("height","700px")
+        }
+    }
+    $(document).ready(function () {
+        BodySize();
+    });
+</script>
