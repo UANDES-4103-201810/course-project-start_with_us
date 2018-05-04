@@ -1,38 +1,50 @@
 <p id="notice"><%= notice %></p>
+<div class="project_view">
+  <div class="my_row">
+    <p>
+    <h2><%= @project.title %></h2>
 
-<p>
-  <strong class="">Users:</strong>
-  <%= @project.user[:email] %>
-</p>
+    </p>
+  </div>
+  <% if @content %>
+    <div class="my_row">
+      <p>
+        <strong>Image:</strong>
+        <img src="<%= @content.image.url(:thumb) %>">
+      </p>
+    </div>
+  <% end %>
+  <div class="my_row">
+    <p>
+      <strong style="text-align: center">Project Owner</strong> <br/>
+      <%= link_to @project.user[:email], '/profile/' + @project.user_id.to_s %>
+    </p>
+  </div>
+  <div class="my_row">
+    <p>
+      <strong>Description:</strong>
+    <div><%= @project.description %></div>
+    </p>
+  </div>
+  <div class="my_row">
+    <p>
+      <strong>Goal Amount: $</strong>
+      <%= @project.goal_amount %>
+    </p>
+  </div>
+  <div class="my_row">
+    <p>
+      <strong>Status: </strong>
+      <%= @project.status %>
+    </p>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+  <div class="my_row">
+    <p>
+      <strong>Delivery Date: </strong>
+      <%= @project.delivery_date %>
+    </p>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Goal Amount:</strong>
-  <%= @project.goal_amount %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @project.status %>
-</p>
-
-<p>
-  <strong>Delivery Date:</strong>
-  <%= @project.delivery_date %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <img src="<%= @content.image.url(:thumb) %>" >
-</p>
-<%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %> |
-<%= link_to 'Back', projects_path %>
+  <%= link_to 'Back', projects_path, class: "btn btn-danger" %>
+</div>

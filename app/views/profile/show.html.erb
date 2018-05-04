@@ -1,23 +1,20 @@
-<div class="center">
+<div class="profile">
 
-  <%= form_for @user, url: "/profile" do |user| %>
-    <%= user.fields_for :profile do |profile| %>
       <img src="<%= @content.image.url(:thumb) %>">
       <div class="form-group">
-        <label>Name</label><%= profile.text_field :name, :class => "form-control", :readonly => true %>
+        <label>Name:  </label><br/><%= @user.profile[:name] %>
       </div>
       <div class="form-group">
-      <label>Last Lame</label><%= profile.text_field :last_name, :class => "form-control", :readonly => true %>
+      <label>Last Name:  </label><br/><%= @user.profile[:last_name] %>
       </div>
       <div class="form-group">
-      <label>About Me</label><%= profile.text_field :about_me, :class => "form-control", :readonly => true %>
+      <label>About Me:  </label><br/><%= @user.profile[:about_me] %>
       </div>
-    <% end %>
     <table class="table">
-      <% @projects.each do |project| %>
-        <tr><%= project.text_field :title %></tr>
+      <tr><th>Project Title</th></tr>
+      <% @user.projects.each do |project| %>
+        <tr><td><%= link_to project[:title] ,project_url(project) %></td></tr>
       <% end %>
     </table>
-  <% end %>
 
 </div>
