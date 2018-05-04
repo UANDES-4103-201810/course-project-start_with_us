@@ -12,11 +12,17 @@ class Users::SessionsController < Devise::SessionsController
   def create
     email = params[:user][:email]
     user = User.where(email: email).first
+    if user.nil?
+      redirect_to '/users/sign_in'
+      flash[:notice] = "Invalid Email or Password"
+      return 0
+    end
     if user.valid_password?(params[:user][:password])
       sign_in(user, scope: user)
       redirect_to '/'
     else
-      redirect_to 'users/sign_in'
+      redirect_to '/users/sign_in'
+      flash[:notice] = "Invalid Email or Password"
     end
   end
 
