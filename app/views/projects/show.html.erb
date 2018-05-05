@@ -32,12 +32,7 @@
       <%= @project.goal_amount %>
     </p>
   </div>
-  <div class="my_row">
-    <p>
-      <strong>Status: </strong>
-      <%= @project.status %>
-    </p>
-  </div>
+
 
   <div class="my_row">
     <p>
@@ -45,21 +40,47 @@
       <%= @project.delivery_date %>
     </p>
   </div>
+
+</div>
+<div class="promises_view">
   <div class="my_row">
     <strong>Promises</strong>
   </div>
+  <% counter = 0 %>
   <% @project.promises.each do |promise| %>
-    <div class="my_row">
-      <div>
-        <%= promise.description %>
-      </div>
-      <div>Price:
+
+   <% if counter == 0 %>
+    <div class="my_row_promises">
+   <% else %>
+      <div class="my_row_promises" hidden>
+   <% end %>
+      <div style="width: 15%;margin-left: 50%;margin-top: 5px;position: absolute;">Price:
         <%= promise.price %>
       </div>
-      <div>Quantity:
+      <div style="width: 15%;margin-left: 50%;margin-top: 25px;position: absolute;">Quantity:
         <%= promise.quantity %>
       </div>
-    </div>
+      <% value = 0 %>
+      <% promise.items.each do |item| %>
+        <% if value == 0 %>
+          <div style="width: 350px;margin-left: 32%;height: 200px; position: absolute;">
+        <% else %>
+          <div style="width: 100px;height: 100%;position: absolute;" hidden>
+        <% end %>
+        <% value += 1 %>
+        <img style="height: 70%;width: 80px;position: absolute" src="<%= item.multimedia_content.image %>">
+        <span style="position: absolute;margin-left: 90px;">Item: <%= item.name %></span><br/>
+        <span style="position: absolute;margin-left: 90px;width: 130px">Description:<br/> <%= item.description %></span>
+        </div>
+      <% end %>
+      <div style="width: 30%;position: absolute">
+        <%= promise.description %>
+      </div>
+
+      </div>
+    <% counter += 1 %>
   <% end %>
+
   <%= link_to 'Back', projects_path, class: "btn btn-danger" %>
+  </div>
 </div>

@@ -76,7 +76,39 @@
 .project_view .my_row
 {
   border-bottom: solid 2px;
-  border-bottom-color: #B00100;
+  border-bottom-color: white;
+  padding-top: 2px;
+}
+.project_view .my_row_promises
+{
+  height: 150px;
+  border-bottom: solid 2px;
+  border-bottom-color: white;
+  padding-top: 2px;
+}
+
+
+.promises_view
+{
+  background-color: rgba(0,0,0,0.6);
+  padding: 5px 20px 20px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 60%;
+  margin-left: 20%;
+  color: white;
+}
+.promises_view .my_row
+{
+  border-bottom: solid 2px;
+  border-bottom-color: white;
+  padding-top: 2px;
+}
+.promises_view .my_row_promises
+{
+  height: 150px;
+  border-bottom: solid 2px;
+  border-bottom-color: white;
   padding-top: 2px;
 }
 
