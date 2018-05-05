@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_create :default_role
+  has_one :wishlist
   belongs_to :role
   has_one :profile
   has_many :projects

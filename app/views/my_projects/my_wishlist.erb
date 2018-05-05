@@ -1,0 +1,60 @@
+
+<%= render 'aside_menu', selected_item:"aaaa" do %>
+  <div class="col-sm-8" style="padding:0 0 0 0 ">
+    <div class="project_show_Table">
+      <h1 style="color: white;text-align: center;"> Wishlist by <%= @user.email %></h1>
+
+      <table class="table">
+        <tr><th>Project Title</th>
+          <th>Owner</th>
+
+          <th>Date</th>
+
+          <th>Delete</th>
+
+        </tr>
+
+        <%wishlist=Wishlist.find_by(user_id:@user.id)
+
+          if not wishlist.nil?
+            projects= wishlist.projects
+            if not projects.nil?
+              @user.wishlist.projects.each do |project| %>
+            <tr><td><%= link_to project[:title] ,project_url(project) %></td>
+              <td><%= project.status%>
+              </td>
+              <td><%= link_to edit_project_url(project) do%>
+                  <i class="glyphicon glyphicon-edit center"></i>
+                <% end %>
+              </td>
+              <td><%= link_to project_url(project), :method=> 'delete' do%>
+                  <i class="glyphicon glyphicon-remove center"></i>
+                <% end %>
+              </td>
+
+            </tr>
+          <% end
+          end
+          end %>
+      </table>
+
+      <br>
+
+    </div>
+  </div>
+
+
+  <button href style="padding:auto;position:fixed;bottom:10%;right: 10%;display:block;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 1px darkblue;
+  ">
+    <%= link_to new_project_url()do%>
+      <i class="glyphicon glyphicon-plus"></i>
+      Add
+    <% end %>
+  </button>
+
+
+<% end %>

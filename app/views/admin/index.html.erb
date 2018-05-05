@@ -1,37 +1,68 @@
 
+<style>
+  .nav>li>a{
+
+  }
+
+</style>
 <div style="color: white;background: rgba(0,0,0,0.6);padding: 10px 30px 10px 30px;width: 95%;margin-left: 2.5%" class="col-sm-12">
 <h1>  Admin</h1>
 <hr>
 
 <div class="container center-block" style="margin: 0px 20px 0px 10px; padding-right: 50px">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Users</a></li>
-    <li><a href="#">Projects</a></li>
-
+    <li ><a  data-toggle="tab"href="#users_div">Users</a></li>
+    <li><a  data-toggle="tab"href="#projects_div">Projects</a></li>
   </ul>
   <br>
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Delete</th>
+  <div class="tab-content">
+    <div id="users_div" class="tab-pane fade in active">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Delete</th>
 
 
-    </tr>
-    </thead>
-    <tbody id="tbody">
+        </tr>
+        </thead>
+        <tbody id="tbody">
 
-    </tbody>
-  </table>
-</div>
+        </tbody>
+      </table>
+    </div>
 
-<div class="container">
+    <div id="projects_div" class="tab-pane fade in">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Owner</th>
+          <th>Created at</th>
+          <th>Status</th>
+          <th>Edit</th>
+          <th>Delete</th>
+
+
+        </tr>
+        </thead>
+        <tbody id="projects_tbody">
+
+        </tbody>
+      </table>
 
 
 
-</div>
+    </div>
+   </div>
+
+
+
+  </div>
+
 </div>
 
 <script>
@@ -54,12 +85,34 @@
 
                     var user_email=user_object["email"]
                     var user_role=user_object["role_name"];
-                    var delete_button=$("<button type=\"button\" class=\"btn btn-danger btn-sm\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
-                    tr.innerHTML+="<td>"+user_name+"</td><td>"+user_email+"</td><td>"+user_role+"</td><td></td>";
+                    var delete_button=$("<a href=''> delete<i class='glyphicon glyphicon-remove'>aa</i></a>");
+                    tr.innerHTML+="<td>"+user_name+"</td><td>"+user_email+"</td><td>"+user_role+"</td><td>"+""+"</td>";
                     tbody.append(tr);
-                    var user_id=user_object["id"]
 
-             
+
+
+                }
+            }});
+
+        $.ajax({url: '/projects.json', success: function(result){
+
+                var tbody=$("#projects_tbody")
+                for(var i=0;i<result.length;i++){
+                    var tr=document.createElement('tr')
+
+                    var project_jo=result[i]
+
+                    var project_title=project_jo["title"]
+                    var project_status=project_jo["status"]
+                    var project_creation=project_jo["created_at"]
+                    var project_url=project_jo["url"]
+                    var user_jo=project_jo["user"]
+                    var user_email=user_jo["email"];
+                    var delete_button=$("<tr><a href=>" + "aa"+ "</a></tr>");
+                    tr.innerHTML+="<td>"+project_title+"</td><td><a href="+user_email+"+>"+user_email+"</a></td><td>"+project_creation+"</td><td>"+project_status+"</td><td>"+""+"</td><td></td>";
+
+                    tbody.append(tr);
+
                 }
             }});
     });

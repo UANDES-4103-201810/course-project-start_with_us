@@ -1,29 +1,23 @@
 class MyProjectsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
 
   end
+
+
   def view_all
-    id_param=params[:id]
-    if id_param.nil?
-      redirect_to home_url
-    end
 
-    @user=User.find_by(id:id_param)
-
-    if @user.nil?
-      redirect_to home_url
-
-    else
-    end
-
-
+    @user=User.find_by(id:current_user.id)
 
   end
-
 
   def split_email(email)
     return email.split('@')[0]
   end
 
 
+  def my_wishlist
+    @user = User.find(current_user.id)
+  end
 end

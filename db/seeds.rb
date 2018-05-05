@@ -141,3 +141,12 @@ MultimediaContent.create(project_id: nil, profile_id: nil, item_id: 30, image: F
 MultimediaContent.create(project_id: nil, profile_id: nil, item_id: 31, image: File.new('app/assets/images/items.png', 'r'))
 MultimediaContent.create(project_id: nil, profile_id: nil, item_id: 32, image: File.new('app/assets/images/items.png', 'r'))
 
+Wishlist.create(user_id:1)
+WishlistProject.create(wishlist_id:1,project_id:1)
+WishlistProject.create(wishlist_id:1,project_id:2)
+WishlistProject.create(wishlist_id:1,project_id:3)
+
+Wishlist.create(user_id:2)
+WishlistProject.create(wishlist_id:2,project_id:1)
+WishlistProject.create(wishlist_id:2,project_id:2)
+WishlistProject.create(wishlist_id:2,project_id:3)
