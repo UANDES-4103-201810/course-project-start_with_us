@@ -1,6 +1,6 @@
 class Promise < ApplicationRecord
   belongs_to :project
-
-  validates :price, greater_than: 0
-  validates :quantity, greater_than: 0
+  has_many :items
+  validates :price, numericality: {greater_than: 0}
+  validates :quantity, numericality: {greater_than: 0}
 end

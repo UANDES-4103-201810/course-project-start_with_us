@@ -1,16 +1,20 @@
-<div class="center">
+<div class="profile">
 
-  <%= form_for @user, url: "/profile" do |user| %>
+  <%= form_for @user, method: "patch",url: "/edit_profile" do |user| %>
     <%= user.fields_for :profile do |profile| %>
-      <img src="<%= @content.image.url(:thumb) %>">
+      <%= profile.fields_for :multimedia_contents do |content| %>
+        <% if @have_content != nil %>
+          <img style="height: 150px; width: 200px" src="<%= @have_content.image %>">
+        <% end %>
+        <%= content.file_field :image %>
       <div class="form-group">
-        <label>Name</label><%= profile.text_field :name, :class => "form-control", :readonly => true %>
+        <label>Name</label><%= profile.text_field :name, :class => "form-control"%>
       </div>
       <div class="form-group">
-        <label>Last Lame</label><%= profile.text_field :last_name, :class => "form-control", :readonly => true %>
+        <label>Last Lame</label><%= profile.text_field :last_name, :class => "form-control"%>
       </div>
       <div class="form-group">
-        <label>About Me</label><%= profile.text_field :about_me, :class => "form-control", :readonly => true %>
+        <label>About Me</label><%= profile.text_field :about_me, :class => "form-control"%>
       </div>
     <% end %>
     <table class="table">
@@ -18,6 +22,7 @@
         <tr><%= project[:title] %></tr>
       <% end %>
     </table>
+    <% end %>
+    <%= user.submit :class => "btn btn-primary" %>
   <% end %>
-
 </div>

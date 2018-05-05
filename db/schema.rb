@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20180430172915) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "promises_id"
+    t.integer "promise_id"
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["promises_id"], name: "index_items_on_promises_id"
+    t.index ["promise_id"], name: "index_items_on_promise_id"
   end
 
   create_table "multimedia_contents", force: :cascade do |t|

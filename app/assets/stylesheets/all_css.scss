@@ -33,10 +33,82 @@
   color: white;
 }
 
+.project_create_view
+{
+  background-color: rgba(0,0,0,0.6);
+  padding: 5px 20px 20px 20px;
+  border-radius: 5px;
+  width: 60%;
+  margin-left: 20%;
+  color: white;
+}
+
+.project_create_view div
+{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.project_create_view div label
+{
+  width: 100px;
+}
+.project_create_view div textarea
+{
+  color: black;
+  border-radius: 5px;
+  margin-left: 104px;
+  margin-top: -24px;
+  width: 80%;
+  height: 200px;
+}
+.project_create_view div input
+{
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+}
+
+.project_create_view div select
+{
+  border-radius: 5px;
+  color: black;
+}
 .project_view .my_row
 {
   border-bottom: solid 2px;
-  border-bottom-color: #B00100;
+  border-bottom-color: white;
+  padding-top: 2px;
+}
+.project_view .my_row_promises
+{
+  height: 150px;
+  border-bottom: solid 2px;
+  border-bottom-color: white;
+  padding-top: 2px;
+}
+
+
+.promises_view
+{
+  background-color: rgba(0,0,0,0.6);
+  padding: 5px 20px 20px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 60%;
+  margin-left: 20%;
+  color: white;
+}
+.promises_view .my_row
+{
+  border-bottom: solid 2px;
+  border-bottom-color: white;
+  padding-top: 2px;
+}
+.promises_view .my_row_promises
+{
+  height: 150px;
+  border-bottom: solid 2px;
+  border-bottom-color: white;
   padding-top: 2px;
 }
 
