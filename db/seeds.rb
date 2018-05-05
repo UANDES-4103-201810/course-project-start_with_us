@@ -7,7 +7,7 @@ Role.create(name:"Publisher")
 User.create(email:"jvejar1@miuandes.cl",password:"12312312a",role_id:1)
 User.create(email:"pgrand@miuandes.cl",password:"12312312a",role_id:2)
 User.create(email:"perro@miuandes.cl",password:"12312312a",role_id:1)
-User.create(email:"petersama@miuandes.cl",password:"12312312a",role_id:1)
+User.create(email:"petersama@miuandes.cl",password:"12312312a",role_id:2)
 
 #Profiles
 Profile.create(user_id: 1, name: "Juan Esteban", last_name: "Vejar", about_me: "Soy entero Ave")
@@ -141,3 +141,8 @@ MultimediaContent.create(project_id: nil, profile_id: nil, item_id: 30, image: F
 MultimediaContent.create(project_id: nil, profile_id: nil, item_id: 31, image: File.new('app/assets/images/items.png', 'r'))
 MultimediaContent.create(project_id: nil, profile_id: nil, item_id: 32, image: File.new('app/assets/images/items.png', 'r'))
 
+#Card Types
+
+
+CardType.create(company: "Mastercard")
+CardType.create(company: "Visa")

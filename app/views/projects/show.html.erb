@@ -42,45 +42,149 @@
   </div>
 
 </div>
+<button id="prev_promise" class="promises-manage-button-left">
+  <img src="<%= image_url("left_arrow.png") %>"></button>
+<button id="next_promise" class="promises-manage-button-right">
+  <img src="<%= image_url("left_arrow.png") %>"></button>
 <div class="promises_view">
   <div class="my_row">
-    <strong>Promises</strong>
+    <strong id="head_promises">Promises 1/<%= @project.promises.count %></strong>
   </div>
   <% counter = 0 %>
   <% @project.promises.each do |promise| %>
 
    <% if counter == 0 %>
-    <div class="my_row_promises">
+    <div id="promise0" class="my_row_promises">
    <% else %>
-      <div class="my_row_promises" hidden>
+      <div id="promise<%= counter.to_s %>" class="my_row_promises" hidden>
    <% end %>
-      <div style="width: 15%;margin-left: 50%;margin-top: 5px;position: absolute;">Price:
+      <div style="width: 15%;margin-top: 5px;position: relative;float: right;margin-right: -6%">Price:
         <%= promise.price %>
       </div>
-      <div style="width: 15%;margin-left: 50%;margin-top: 25px;position: absolute;">Quantity:
+      <div style="width: 15%;margin-top: 25px;position: relative;float: right;margin-right: -12%">Quantity:
         <%= promise.quantity %>
       </div>
       <% value = 0 %>
+
+    <button class="my_right_button" id ="item_slider_button_right<%= counter.to_s %>" >
+      <i class="glyphicon glyphicon-chevron-right"></i></button>
+    <button class="my_left_button" id ="item_slider_button_left<%= counter.to_s %>">
+      <i class="glyphicon glyphicon-chevron-left"></i></button>
       <% promise.items.each do |item| %>
-        <% if value == 0 %>
-          <div style="width: 350px;margin-left: 32%;height: 200px; position: absolute;">
+
+      <% if value == 0 %>
+        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;margin-left: 55%;height: 160px;">
         <% else %>
-          <div style="width: 100px;height: 100%;position: absolute;" hidden>
+        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;margin-left: 55%;height: 160px;" hidden>
         <% end %>
         <% value += 1 %>
-        <img style="height: 70%;width: 80px;position: absolute" src="<%= item.multimedia_content.image %>">
+        <img style="height: 140px;width: 80px;position: absolute" src="<%= item.multimedia_content.image %>">
         <span style="position: absolute;margin-left: 90px;">Item: <%= item.name %></span><br/>
         <span style="position: absolute;margin-left: 90px;width: 130px">Description:<br/> <%= item.description %></span>
         </div>
       <% end %>
-      <div style="width: 30%;position: absolute">
+    <p hidden id="item-len-<%= counter.to_s %>"><%= value.to_s %></p>
+      <div style="width: 50%;position: relative;margin-top: -150px;height: 100%">
         <%= promise.description %>
       </div>
-
+    <% if current_user %>
+    <%= link_to "Buy", '/payment/promises/' + promise.id.to_s, class: "btn btn-success", style: "float: right;margin-top: -50px;" %>
+    <% end %>
       </div>
     <% counter += 1 %>
   <% end %>
-
+  <p hidden id="promises-len"><%= counter.to_s %></p>
+  <% if current_user %>
+  <%= link_to 'Fund Project', '/payments/fund/' + @project.id.to_s, class: "btn btn-primary" %>
+  <% end %>
   <%= link_to 'Back', projects_path, class: "btn btn-danger" %>
   </div>
+  <script>
+var actual_promise = 0;
+var actual_item = 0;
+
+var head_actual_promise = $("#head_promises").text().split(" ")[1].split("/");
+var len_promises = head_actual_promise[1];
+var len_actual_promises_items = 0;
+
+function ItemsManage() {
+$("[id^=item_slider_button_left]").click(function () {
+    if (actual_item > 0) {
+        var next = "item" + actual_promise.toString() + (actual_item - 1).toString();
+        var actual_id = "item" + actual_promise.toString() + (actual_item).toString();
+        var actual_obj = $("#" + actual_id);
+        var next_obj = $("#" + next);
+        actual_obj.attr("class", "");
+        next_obj.attr("class", "");
+        actual_obj.animateCss("fadeOutRight",function () {
+           actual_obj.hide() ;
+            next_obj.show();
+            next_obj.animateCss("fadeInLeft");
+        });
+
+        actual_item -= 1;
+
+
+    }
+});
+$("[id^=item_slider_button_right]").click(function () {
+    if (actual_item < 1) {
+        var next = "item" + actual_promise.toString() + (actual_item + 1).toString();
+        var actual_id = "item" + actual_promise.toString() + (actual_item).toString();
+        var actual_obj = $("#" + actual_id);
+        var next_obj = $("#" + next);
+        actual_obj.attr("class", "");
+        next_obj.attr("class", "");
+        actual_obj.animateCss("fadeOutLeft",function () {
+            actual_obj.hide();
+            next_obj.show();
+            next_obj.animateCss("fadeInRight");
+        });
+        actual_item += 1;
+    }
+  });
+}
+
+
+function PromisesManage() {
+    var promises_len = $("#promises-len").text();
+    $("#next_promise").click(function () {
+        if (actual_promise < promises_len - 1) {
+            var actual_promise_obj = $("#promise" + actual_promise.toString());
+            var next_promise = $("#promise" + (actual_promise + 1).toString());
+            actual_promise_obj.attr("class", "my_row_promises");
+            next_promise.attr("class", "my_row_promises");
+            actual_promise_obj.hide();
+            next_promise.show();
+            next_promise.addClass("animated flipInX");
+            actual_promise += 1;
+            actual_item = 0;
+            $("#head_promises").text("Promises " + (actual_promise + 1).toString() + "/" + len_promises);
+        }
+    });
+    $("#prev_promise").click(function () {
+        if (actual_promise > 0) {
+            var actual_promise_obj = $("#promise" + actual_promise.toString());
+            var next_promise = $("#promise" + (actual_promise - 1).toString());
+            actual_promise_obj.attr("class", "my_row_promises");
+            next_promise.attr("class", "my_row_promises");
+            next_promise.show();
+            actual_promise_obj.hide();
+            next_promise.addClass("animated flipInX");
+            actual_promise -= 1;
+            actual_item = 0;
+            $("#head_promises").text("Promises " + (actual_promise + 1).toString() + "/" + len_promises);
+        }
+    });
+}
+$(document).ready(function () {
+
+    PromisesManage();
+    ItemsManage();
+});
+
+  </script>
+
 </div>
+
+

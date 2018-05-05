@@ -93,9 +93,10 @@
   background-color: rgba(0,0,0,0.6);
   padding: 5px 20px 20px 20px;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 40px;
   width: 60%;
   margin-left: 20%;
+
   color: white;
 }
 .promises_view .my_row
@@ -104,7 +105,7 @@
   border-bottom-color: white;
   padding-top: 2px;
 }
-.promises_view .my_row_promises
+.my_row_promises
 {
   height: 150px;
   border-bottom: solid 2px;
@@ -120,4 +121,92 @@
   padding: 20px 20px 20px 20px;
   border-radius: 5px;
   background-color: rgba(0,0,0,0.6);
+}
+
+.my_left_button
+{
+  float: right;
+  position: relative;
+  z-index: 2;
+  background-color: transparent;
+  border: transparent;
+  width: 30px;
+  margin-top: 8%;
+  margin-right: 27%;
+}
+
+.my_right_button
+{
+  float: right;
+  margin-right: 2%;
+  margin-top: 8%;
+  width: 30px;
+  position: relative;
+  z-index: 2;
+  background-color: transparent;
+  border: transparent;
+}
+
+.my_left_button i
+.my_right_button i
+{
+  height: 50px;
+}
+
+.promises-manage-button
+{
+  color: white;
+  height: 50px;
+  width: 30px;
+  position: absolute;
+  z-index: 2;
+  background-color: transparent;
+  border: transparent;
+}
+
+.promises-manage-button-left{
+  color: white;
+  height: 50px;
+  width: 30px;
+  position: absolute;
+  z-index: 2;
+  background-color: transparent;
+  border: transparent;
+  margin-top: 8%;
+  margin-left: 17%;
+}
+.promises-manage-button-right{
+  color: white;
+  height: 50px;
+  width: 30px;
+  position: absolute;
+  z-index: 2;
+  background-color: transparent;
+  border: transparent;
+  margin-left: 80%;
+  margin-top: 8%;
+
+}
+.promises-manage-button-right img
+{
+  height: 80px;
+  width: 30px;
+}
+.promises-manage-button-left img
+{
+  height: 80px;
+  width: 30px;
+  transform: rotate(180deg);
+}
+
+.promise_payment_form
+{
+  width: 50%;
+  height: 400px;
+  background: rgba(0,0,0,0.6);
+  margin-left: 25%;
+  margin-top: 20px;
+  color: white;
+  padding: 15px 15px 15px 15px;
+  border-radius: 10px;
 }
