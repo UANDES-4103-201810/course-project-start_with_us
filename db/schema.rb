@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430172915) do
+ActiveRecord::Schema.define(version: 20180505234607) do
 
   create_table "card_types", force: :cascade do |t|
     t.string "company"
@@ -61,6 +61,20 @@ ActiveRecord::Schema.define(version: 20180430172915) do
     t.index ["item_id"], name: "index_multimedia_contents_on_item_id"
     t.index ["profile_id"], name: "index_multimedia_contents_on_profile_id"
     t.index ["project_id"], name: "index_multimedia_contents_on_project_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "promise_id"
+    t.integer "fund_id"
+    t.integer "project_id"
+    t.integer "credit_card_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["credit_card_id"], name: "index_payments_on_credit_card_id"
+    t.index ["fund_id"], name: "index_payments_on_fund_id"
+    t.index ["project_id"], name: "index_payments_on_project_id"
+    t.index ["promise_id"], name: "index_payments_on_promise_id"
   end
 
   create_table "permissions", force: :cascade do |t|

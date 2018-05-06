@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  promise: one
+  fund: one
+  project: one
+  amount: 1
+
+two:
+  promise: two
+  fund: two
+  project: two
+  amount: 1

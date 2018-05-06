@@ -1,6 +1,56 @@
 // Place all the styles related to the profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.home_section
+{
+  color: white;
+  width: 60%;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  height: 600px;
+  margin-left: 20%;
+  text-align: center;
+}
+
+
+.login_section
+{
+  padding: 10px 20px 20px 20px;
+  color: white;
+  width: 20%;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  margin-left: 40%;
+}
+
+
+.sign_up_section
+{
+  padding: 10px 20px 20px 20px;
+  color: white;
+  width: 30%;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  margin-left: 35%;
+}
+
+.forgot_password_section
+{
+  padding: 10px 20px 20px 20px;
+  color: white;
+  width: 30%;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  margin-left: 35%;
+}
+
+
+
+
+
+
+
 .center
 {
   color: white;

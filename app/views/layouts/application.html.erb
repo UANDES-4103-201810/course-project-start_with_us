@@ -96,9 +96,10 @@
     {
         var body = $("#body_main");
         var size = body.height();
-        if (size < 1200)
+        var height = window.innerHeight;
+        if (size < height)
         {
-            body.css("height","1200px")
+            body.css("height", height.toString() + "px")
         }
     }
     $(document).ready(function () {

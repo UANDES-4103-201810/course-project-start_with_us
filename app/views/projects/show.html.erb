@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<div class="project_view">
+<div class="project_view animated zoomIn">
   <div class="my_row">
     <p>
     <h2><%= @project.title %></h2>
@@ -42,11 +42,11 @@
   </div>
 
 </div>
-<button id="prev_promise" class="promises-manage-button-left">
+<button id="prev_promise" class="promises-manage-button-left animated zoomIn">
   <img src="<%= image_url("left_arrow.png") %>"></button>
-<button id="next_promise" class="promises-manage-button-right">
+<button id="next_promise" class="promises-manage-button-right animated zoomIn">
   <img src="<%= image_url("left_arrow.png") %>"></button>
-<div class="promises_view">
+<div class="promises_view animated zoomIn">
   <div class="my_row">
     <strong id="head_promises">Promises 1/<%= @project.promises.count %></strong>
   </div>
