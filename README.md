@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#developers
 
-Things you may want to cover:
+Juan Esteban Vejar, jvejar1@miuandes.cl
+Pedro Grand, pgrand@miuandes.cl
 
-* Ruby version
+#extends
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+device rails library
+animated.css documantation in https://daneden.github.io/animate.css/
