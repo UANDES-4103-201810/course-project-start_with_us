@@ -22,14 +22,30 @@
   
   <div class="left">
   <div class="list-group col-sm-2 ">
-    <a href="#" class="list-group-item selected">
-      <p class="list-group-item-text">My projects</p>
+    <a href="<%= my_projects_url %>" class="list-group-item <%="selected" if selected_item==0 %>">
+      <p class="list-group-item-text">My Projects</p>
     </a>
-    <a href="#" class="list-group-item">
-      <p class="list-group-item-text">My projects's Foundings</p>
+    <a href="<%= my_wishlist_url %>" class="list-group-item <%="selected" if selected_item==1 %>">
+      <p class="list-group-item-text">My Wislist</p>
     </a>
 
   </div>
   </div>
   <%= yield %>
+
+  <button href style="padding:auto;position:fixed;bottom:10%;right: 7%;display:block;
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      border: 1px black;
+      text-decoration-color: aliceblue;
+      background-color: rgb(0,88,158);
+  ">
+    <%= link_to new_project_url()do%>
+      <i style="color: rgb(219,219,219)" class="glyphicon glyphicon-plus"></i>
+      <label  style="color: #dbdbdb">Add Project</label>
+    <% end %>
+  </button>
+
+
 </div>

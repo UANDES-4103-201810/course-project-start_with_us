@@ -1,5 +1,5 @@
 
-<%= render 'aside_menu', selected_item:"aaaa" do %>
+<%= render 'aside_menu', :selected_item=>1 do %>
   <div class="col-sm-8" style="padding:0 0 0 0 ">
     <div class="project_show_Table">
       <h1 style="color: white;text-align: center;"> Wishlist by <%= @user.email %></h1>
@@ -42,19 +42,6 @@
 
     </div>
   </div>
-
-
-  <button href style="padding:auto;position:fixed;bottom:10%;right: 10%;display:block;
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      border: 1px darkblue;
-  ">
-    <%= link_to new_project_url()do%>
-      <i class="glyphicon glyphicon-plus"></i>
-      Add
-    <% end %>
-  </button>
 
 
 <% end %>

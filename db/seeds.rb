@@ -11,7 +11,7 @@ User.create(email:"petersama@miuandes.cl",password:"12312312a",role_id:2)
 
 #Profiles
 Profile.create(user_id: 1, name: "Juan Esteban", last_name: "Vejar", about_me: "Soy entero Ave")
-Profile.create(user_id: 2, name: "Pedro", last_name: "Grand", about_me: "Its The God Raydas")
+Profile.create(user_id: 2, name: "Pedro", last_name: "Grand", about_me: "Hola soy Perro Grand")
 Profile.create(user_id: 3, name: "Javier", last_name: "Soto", about_me: "Helooooou")
 Profile.create(user_id: 4, name: "Peter", last_name: "Sama", about_me: "Omae Wae Mou Shindeiru!")
 
