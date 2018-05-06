@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations"}
 
 
-  get '/my_projects', to: "my_projects#view_all"
+  get '/my_projects', to: "my_projects#view_all", as:"my_projects"
 
-  get '/my_wishlist', to: "my_projects#my_wishlist"
+  get '/my_wishlist', to: "my_projects#my_wishlist", as:"my_wishlist"
+
+  get '/admin', to: "admin#index", as:"admin"
   resources :projects
   get '/', to: "home#index", as:'home'
   get 'login', to: "session#login"
