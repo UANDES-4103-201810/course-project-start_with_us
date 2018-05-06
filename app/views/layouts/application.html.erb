@@ -5,8 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <%= stylesheet_link_tag    'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
     <style>
       .nav>li>a {
         position: relative;
@@ -26,8 +25,10 @@
 <div class="nav_bar">
   <div class="nav_buttons_container">
     <a class="nav_bar_button" href="/">Start With Us</a>
-    <% if @is_admin %>
-      <a class="nav_bar_button" href="/admin">Admin</a>
+    <% if current_user %>
+      <% if current_user.role.name == "Admin" %>
+        <a class="nav_bar_button" href="/admin">Admin</a>
+      <% end %>
     <% end %>
     <a class="nav_bar_button" href="/projects">Projects</a>
     <% if user_signed_in? %>
@@ -64,6 +65,33 @@
 
 </html>
 <script>
+    $.fn.extend({
+        animateCss: function (animationName, callback) {
+            var animationEnd = (function (el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebkitAnimation: 'webkitAnimationEnd',
+                };
+
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
+                    }
+                }
+            })(document.createElement('div'));
+
+            this.addClass('animated ' + animationName).one(animationEnd, function () {
+                $(this).removeClass('animated ' + animationName);
+
+                if (typeof callback === 'function') callback();
+            });
+
+            return this;
+        },
+    });
+
     function BodySize()
     {
         var body = $("#body_main");

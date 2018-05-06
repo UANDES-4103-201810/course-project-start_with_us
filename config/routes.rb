@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   get '/edit_profile/:id', to: "profile#edit"
   patch '/edit_profile', to: "profile#update"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/payment/promises/:id', to: "payments#promises", as: "pay_promise"
+  post '/payment/pay', to: "payment#pay"
 
-
-
-
+  get '/payments/fund/:id', to: "payments#fund"
 
   get '/admin/get_users', to: "admin#get_users", as: 'admin_get_users'
   get '/admin', to: "admin#index"
