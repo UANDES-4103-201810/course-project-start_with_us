@@ -2,17 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// Home CSS
+
 .home_section
 {
   color: white;
   width: 60%;
   background-color: rgba(0,0,0,0.6);
   border-radius: 10px;
-  height: 600px;
+  height: 700px;
   margin-left: 20%;
   text-align: center;
 }
 
+.home_section .project_row
+{
+  height: 230px;
+  width: 90%;
+  margin-left: 5%;
+  background: rgba(0,0,0,0.8);
+  margin-top: 50px;
+  border-radius: 10px;
+}
+.home_section .project_row img
+{
+  margin-top: 20px;
+  float: left;
+  margin-left: 20px;
+  height: 150px;
+  width: 100px;
+}
+.home_section .project_row .title
+{
+  width: 90%;
+  font-size: 20px;
+}
+.home_section .project_row .description
+{
+  width: 90%;
+  margin-left: 8%;
+  height: 80%;
+}
+
+// Login CSS
 
 .login_section
 {
@@ -25,6 +57,8 @@
 }
 
 
+// Sign Up CSS
+
 .sign_up_section
 {
   padding: 10px 20px 20px 20px;
@@ -35,6 +69,7 @@
   margin-left: 35%;
 }
 
+//Recovery password CSS
 .forgot_password_section
 {
   padding: 10px 20px 20px 20px;
@@ -63,6 +98,8 @@
 {
   font-family: 'Roboto Slab', sans-serif;
 }
+
+// Projects CSS
 
 .project_show_Table
 {
@@ -163,15 +200,7 @@
   padding-top: 2px;
 }
 
-.profile
-{
-  color: white;
-  width: 80%;
-  margin-left: 12%;
-  padding: 20px 20px 20px 20px;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0.6);
-}
+
 
 .my_left_button
 {
@@ -259,4 +288,17 @@
   color: white;
   padding: 15px 15px 15px 15px;
   border-radius: 10px;
+}
+
+
+// Profile CSS
+
+.profile
+{
+  color: white;
+  width: 80%;
+  margin-left: 12%;
+  padding: 20px 20px 20px 20px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.6);
 }

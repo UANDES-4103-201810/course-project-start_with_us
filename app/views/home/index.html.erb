@@ -1,7 +1,14 @@
 <div id="home_section" class="home_section animated lightSpeedIn" >
   <h1 style="color: white">Start with Us!!!</h1>
   <h3 style="color: white">Pedro Grand & Juan Esteban Vejar</h3>
-  <a href="/projects"><button class="btn btn-primary" >Projects</button></a>
+  <% @projects.each do |project| %>
+  <div class="project_row">
+    <img src="<%= project.multimedia_contents.sample.image %>">
+    <strong class="title"><%= project.title %></strong>
+    <div class="description"><%= project.description %></div>
+    <%= link_to 'Go To Project', project, class: "btn btn-primary", style: "float: left;margin-top: -25px;margin-left:10px"%>
+  </div>
+  <% end %>
 </div>
 <script>
     function BodySize()
