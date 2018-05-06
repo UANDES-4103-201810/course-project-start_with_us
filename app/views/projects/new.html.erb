@@ -1,4 +1,4 @@
-<div class="project_create_view">
+<div class="project_create_view animated zoomIn">
   <h1>New Project</h1>
 
   <%= form_for @project, method: "post" do |pj| %>
@@ -38,7 +38,7 @@
       <script>
           function AddPromises() {
               var table = $("#items_table");
-              var row = '<tr><td><%= promise.text_field :description %></td><td><%= promise.text_field :quantity %></td><td><%= promise.text_field :price %></td></tr>';
+              var row = '<tr class="animated fadeIn"><td><%= promise.text_field :description %></td><td><%= promise.text_field :quantity %></td><td><%= promise.text_field :price %></td></tr>';
               table.append(row);
           }
 
