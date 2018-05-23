@@ -21,12 +21,12 @@
     <div>
       <label>Delivery Date</label>
       <%= pj.date_select :delivery_date %>
+      <%= pj.hidden_field :user_id, :value => current_user.id %>
     </div>
     <label>Image</label>
     <%= pj.file_field :multimedia_content %>
     <br/>
     <%= pj.fields_for :promises do |promise| %>
-
     <table id="items_table" class="table">
       <thead>
         <tr><th>Description</th><th>Quantity</th><th>Price</th></tr>

@@ -23,5 +23,5 @@ Rails.application.routes.draw do
   get '/admin/get_users', to: "admin#get_users", as: 'admin_get_users'
   get '/admin', to: "admin#index"
 
-
+  post '/wishlist/project/', to: "my_projects#add_to_wishlist"
 end

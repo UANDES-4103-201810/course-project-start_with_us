@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
 
 <div class="project_show_Table animated fadeInRight">
 <h1 style="color: white;text-align: center;">Projects</h1>
-
+<p hidden id="notice-wishlist"></p>
 <table class="table">
   <thead style="color: white;">
     <tr>
@@ -24,7 +23,10 @@
         <td><%= project.status %></td>
         <td><%= project.delivery_date %></td>
         <td><%= link_to 'Go To Project', project, class: "btn btn-primary" %></td>
-      </tr>
+        <% if current_user %>
+        <td><button title="Add to wishlist" style="background: transparent" href="#" id="addToWishlist<%= project.id %>" project-data="<%= project.id %>"> <i class="glyphicon glyphicon-plus"></i></button> </td>
+        <% end %>
+          </tr>
     <% end %>
   </tbody>
 </table>
@@ -33,3 +35,31 @@
 
 <%= link_to 'New Project', new_project_path %>
 </div>
+<script>
+function addToWishlist() {
+  $("[id^=addToWishlist]").click(function () {
+      $.ajax({
+          url: "/wishlist/project/",
+          type: "Post",
+          data: {id: $(this).attr("project-data")},
+          success: function(data){
+              if (data["success"] == "exist"){
+                  $("#notice-wishlist").text("This project is already added to your wishlist");
+                  $("#notice-wishlist").show();
+                  $("#notice-wishlist").css("color", "red");
+                  $("#notice-wishlist").fadeOut(2000);
+              }
+              else if (data["success"] == true){
+                  $("#notice-wishlist").text("Added to wishlist");
+                  $("#notice-wishlist").show();
+                  $("#notice-wishlist").css("color", "green");
+                  $("#notice-wishlist").fadeOut(2000);
+              }
+          }
+      });
+  });
+}
+$(document).ready(function () {
+   addToWishlist();
+});
+</script>
