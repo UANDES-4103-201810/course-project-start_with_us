@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @content = MultimediaContent.where(:project_id => @project.id).first
-    puts "hola"
   end
 
   # GET /projects/new
@@ -29,15 +28,14 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.create(project_params)
-    content = MultimediaContent.create(project_id: @project.id, profile_id: nil, item_id: nil, image: params[:project][:multimedia_content])
-    x = content.save
+
     respond_to do |format|
       if @project.save
+        content = MultimediaContent.create(project_id: @project.id, profile_id: nil, item_id: nil, image: params[:project][:multimedia_content])
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { redirect_to '/projects/new'}
       end
     end
   end

@@ -157,3 +157,4 @@ WishlistProject.create(wishlist_id:2,project_id:3)
 
 CardType.create(company: "Mastercard")
 CardType.create(company: "Visa")
+

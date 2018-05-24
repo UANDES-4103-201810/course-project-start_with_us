@@ -13,7 +13,7 @@ class ProfileController < ApplicationController
       if content == nil
         content = MultimediaContent.create(image: profile[:multimedia_contents][:image], project_id: nil, profile_id: the_profile.id, item_id: nil)
       else
-        content.update(image: the_profile[:multimedia_contents][:image], project_id: nil, profile_id: the_profile.id, item_id: nil)
+        content.update(image: profile[:multimedia_contents][:image], project_id: nil, profile_id: the_profile.id, item_id: nil)
       end
     end
     redirect_to '/profile/' + current_user.id.to_s
