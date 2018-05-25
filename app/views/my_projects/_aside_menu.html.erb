@@ -8,9 +8,11 @@
   }
 
     .left>.list-group>a{
+      color: white;
       background-color: rgba(0, 0, 0, 0.5)
     }
   .left>.list-group>a.selected{
+    color: white;
     background-color: rgba(0, 45, 94, 0.71)
   }
 
@@ -20,7 +22,7 @@
 
 <div class="row">
   
-  <div class="left">
+  <div class="left animated fadeIn">
   <div class="list-group col-sm-2 ">
     <a href="<%= my_projects_url %>" class="list-group-item <%="selected" if selected_item==0 %>">
       <p class="list-group-item-text">My Projects</p>
@@ -33,7 +35,7 @@
   </div>
   <%= yield %>
 
-  <button href style="padding:auto;position:fixed;bottom:10%;right: 7%;display:block;
+  <button id="add_project_button" href style="padding:auto;position:fixed;bottom:10%;right: 7%;display:block;
       height: 70px;
       width: 70px;
       border-radius: 50%;
@@ -49,3 +51,11 @@
 
 
 </div>
+<script>
+$("#add_project_button").hover(function () {
+    $("#add_project_button").animateCss("bounce", function () {
+        $("#add_project_button").attr("class", "");
+    });;
+
+});
+</script>

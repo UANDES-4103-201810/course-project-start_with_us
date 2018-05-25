@@ -40,7 +40,7 @@
       <%= @project.delivery_date %>
     </p>
   </div>
-
+  <input id="addToWishlist" type="button" project-data="<%= @project.id %>" class="btn btn-primary" value="Add to wishlist" style="margin-top: 10px">
 </div>
 <button id="prev_promise" class="promises-manage-button-left animated zoomIn">
   <img src="<%= image_url("left_arrow.png") %>"></button>
@@ -146,6 +146,20 @@ $("[id^=item_slider_button_right]").click(function () {
 }
 
 
+function addToWishlist() {
+    $("#addToWishlist").click(function () {
+        $.ajax({
+            url: "/wishlist/project/",
+            type: "Post",
+            data: {id: $(this).attr("project-data")},
+            success: function(data){
+                console.log(data);
+            }
+        });
+    });
+}
+
+
 function PromisesManage() {
     var promises_len = $("#promises-len").text();
     $("#next_promise").click(function () {
@@ -181,10 +195,9 @@ $(document).ready(function () {
 
     PromisesManage();
     ItemsManage();
+    addToWishlist();
 });
 
   </script>
 
 </div>
-
-

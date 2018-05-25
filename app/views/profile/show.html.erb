@@ -4,7 +4,7 @@
     <% if @user.id == current_user.id %>
       <%= link_to "Edit Profile", '/edit_profile/' + current_user.id.to_s, class: "btn btn-success" %>
       <div style="height: 5px"></div>
-      <%= link_to "My Projects", '/user_projects/' + current_user.id.to_s, class: "btn btn-primary" %>
+      <%= link_to "My Projects", '/my_projects',  class: "btn btn-primary" %>
     <% end %>
    <% end %>
   </div>
