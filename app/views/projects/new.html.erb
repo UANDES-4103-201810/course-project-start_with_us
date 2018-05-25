@@ -14,10 +14,7 @@
       <label>Goal Amount</label>
       <%= pj.text_field :goal_amount %>
     </div>
-    <div>
-      <label>Status</label>
-      <%= pj.text_field :status %>
-    </div>
+      <%= pj.hidden_field :status, :value => "waiting" %>
     <div>
       <label>Delivery Date</label>
       <%= pj.date_select :delivery_date %>
@@ -38,7 +35,7 @@
       <script>
           function AddPromises() {
               var table = $("#items_table");
-              var row = '<tr><td><%= promise.text_field :description %></td><td><%= promise.text_field :quantity %></td><td><%= promise.text_field :price %></td></tr>';
+              var row = '<tr class="animated fadeIn"><td><%= promise.text_field :description, class:"form-control" %></td><td><%= promise.text_field :quantity, class:"form-control" %></td><td><%= promise.text_field :price, class:"form-control" %></td></tr>';
               table.append(row);
           }
 
