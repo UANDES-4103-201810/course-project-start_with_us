@@ -1,7 +1,9 @@
 
 <%= render 'aside_menu', :selected_item=>1 do %>
   <div class="col-sm-8" style="padding:0 0 0 0 ">
+
     <div class="project_show_Table animated fadeIn">
+      <div style="color: green"><%= flash[:wishlist] %></div>
       <h1 style="color: white;text-align: center;"> Wishlist by <%= @user.email %></h1>
 
       <table class="table">
@@ -23,11 +25,11 @@
             <tr><td><%= link_to project[:title] ,project_url(project) %></td>
               <td><%= project.status%>
               </td>
-              <td><%= link_to edit_project_url(project) do%>
+              <td><%= project.delivery_date do%>
                   <i class="glyphicon glyphicon-edit center"></i>
                 <% end %>
               </td>
-              <td><%= link_to project_url(project), :method=> 'delete' do%>
+              <td><%= link_to '/wishlist/project/?wishlist=' + wishlist.id.to_s + ';project=' + project.id.to_s, :method=> 'delete' do%>
                   <i class="glyphicon glyphicon-remove center"></i>
                 <% end %>
               </td>

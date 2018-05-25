@@ -26,4 +26,7 @@ Rails.application.routes.draw do
   get '/admin', to: "admin#index"
 
   post '/wishlist/project/', to: "my_projects#add_to_wishlist"
+  delete '/wishlist/project/', to: "my_projects#remove_from_wishlist"
+  post '/projects/status/:id', to: "projects#status"
+
 end

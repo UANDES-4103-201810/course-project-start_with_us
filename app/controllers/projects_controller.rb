@@ -36,10 +36,7 @@ class ProjectsController < ApplicationController
       cat=Category.find(cat)
       @project.categories<<cat
     end
-    puts "hoa"
     puts @project.categories.as_json
-
-    puts "hoa"
     respond_to do |format|
       if @project.save
         content = MultimediaContent.create(project_id: @project.id, profile_id: nil, item_id: nil, image: params[:project][:multimedia_content])
@@ -62,6 +59,20 @@ class ProjectsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def status
+    project = Project.find(params[:id])
+    method = params[:method]
+    if method == "delete"
+      project.update(status:"rejected")
+      flash[:error] = "Project was Rejected"
+      redirect_to "/projects/" + project.id.to_s
+    elsif method == "accept"
+      project.update(status:"published")
+      flash[:notice] = "Project was Accepted"
+      redirect_to "/projects/" + project.id.to_s
     end
   end
 

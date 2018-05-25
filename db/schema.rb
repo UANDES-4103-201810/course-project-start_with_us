@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505234607) do
+ActiveRecord::Schema.define(version: 20180524235117) do
 
   create_table "card_types", force: :cascade do |t|
     t.string "company"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,6 +98,15 @@ ActiveRecord::Schema.define(version: 20180505234607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "project_categories", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_project_categories_on_category_id"
+    t.index ["project_id"], name: "index_project_categories_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|

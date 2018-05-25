@@ -143,13 +143,12 @@
 
         $.ajax({
             url: '/projects.json', success: function (result) {
-
-                var tbody = $("#projects_tbody")
+                var tbody = $("#projects_tbody");
                 for (var i = 0; i < result.length; i++) {
                     var tr = document.createElement('tr')
 
                     var project_jo = result[i]
-
+                    var proj_id = project_jo["id"];
                     var project_title = project_jo["title"]
                     var project_status = project_jo["status"]
                     var project_creation = project_jo["created_at"]
@@ -157,7 +156,7 @@
                     var user_jo = project_jo["user"]
                     var user_email = user_jo["email"];
                     var delete_button = $("<tr><a href=>" + "aa" + "</a></tr>");
-                    tr.innerHTML += "<td>" + project_title + "</td><td><a href=" + user_email + "+>" + user_email + "</a></td><td>" + project_creation + "</td><td>" + project_status + "</td><td>" + "" + "</td><td></td>";
+                    tr.innerHTML += "<td><a href='/projects/"+ proj_id +"'>" + project_title + "</a></td><td><a href=" + user_email + "+>" + user_email + "</a></td><td>" + project_creation + "</td><td>" + project_status + "</td><td>" + "" + "</td><td></td>";
 
                     tbody.append(tr);
 
