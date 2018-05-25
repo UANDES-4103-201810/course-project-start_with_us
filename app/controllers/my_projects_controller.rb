@@ -7,9 +7,7 @@ class MyProjectsController < ApplicationController
 
 
   def view_all
-
     @user=User.find_by(id:current_user.id)
-
   end
 
   def split_email(email)
@@ -19,6 +17,12 @@ class MyProjectsController < ApplicationController
 
   def my_wishlist
     @user = User.find(current_user.id)
+  end
+
+  def my_foundings
+    @user=User.find(current_user.id)
+
+    @my_foundings_rows=Founding.where(user_id:@user.id)
   end
 
   def add_to_wishlist

@@ -1,9 +1,15 @@
 class AdminController < ApplicationController
   before_action :authenticate_user!
 def index
-
-
+  @categories=Category.all
 end
+
+  def get_categories
+
+  @categories=Category.all
+
+
+  end
 def get_users
   users=User.all()
   users_response=[]
@@ -22,4 +28,5 @@ def get_users
   end
   render json:users_response.as_json
 end
+
 end

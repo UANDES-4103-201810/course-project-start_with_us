@@ -1,0 +1,40 @@
+
+<%= render 'aside_menu', :selected_item=>2 do %>
+  <div class="col-sm-8" style="padding:0 0 0 0 ">
+    <div class="project_show_Table animated fadeIn">
+      <h1 style="color: white;text-align: center;"> Founded by <%= @user.email %></h1>
+      <table class="table">
+        <tr><th>Project Title</th>
+          <th>Owner</th>
+
+
+
+          <th>Mount</th>
+          <th>Founded at</th>
+
+        </tr>
+
+        <%@my_foundings_rows.each do |founding_row|
+        project=founding_row.project
+        %>
+              <tr><td><%= link_to project[:title] ,project_url(project) %></td>
+                <td><%=link_to  project.user.email, user_profile_url(project.user)%>
+                </td>
+                <td><%= founding_row.mount%>
+                </td>
+                <td><%= founding_row.created_at.to_date%>
+              </td>
+
+              </tr>
+            <%
+
+               end %>
+      </table>
+
+      <br>
+
+    </div>
+  </div>
+
+
+<% end %>

@@ -27,8 +27,19 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+
     @project = Project.create(project_params)
 
+    categories=params[:categories]
+
+    categories.each do |cat|
+      cat=Category.find(cat)
+      @project.categories<<cat
+    end
+    puts "hoa"
+    puts @project.categories.as_json
+
+    puts "hoa"
     respond_to do |format|
       if @project.save
         content = MultimediaContent.create(project_id: @project.id, profile_id: nil, item_id: nil, image: params[:project][:multimedia_content])
@@ -72,10 +83,12 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:user_id, :title, :description, :goal_amount, :status, :delivery_date)
+      params.require(:project).permit(:user_id, :title, :description, :goal_amount, :status, :delivery_date,)
     end
 
     def image_params
-      params.require(:multimedia_content).permit(:project_id, :user_id, :item_id ,:image)
+      params.require(:multimedia_content).permit(:project_id, :user_id, :item_id ,:image,:category_ids)
     end
+
+
 end

@@ -10,6 +10,22 @@
       <label>Description</label><br />
       <%= pj.text_area :description %>
     </div>
+
+    <div>
+      <label>Categories</label><br />
+
+
+
+      <% Category.all.each  do |category| %>
+        <input class="left" type="checkbox" style="width: 13px"id="categories[<%=category.id%>]" name="categories[<%=category.id%>]" value="true" />
+
+        <label for="categories[<%=category.id%>]"><%=category.name%></label>
+
+        <br />
+
+
+    <% end %>
+      </div>
     <div>
       <label>Goal Amount</label>
       <%= pj.text_field :goal_amount %>

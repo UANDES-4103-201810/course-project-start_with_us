@@ -15,11 +15,26 @@ Profile.create(user_id: 2, name: "Pedro", last_name: "Grand", about_me: "Hola so
 Profile.create(user_id: 3, name: "Javier", last_name: "Soto", about_me: "Helooooou")
 Profile.create(user_id: 4, name: "Peter", last_name: "Sama", about_me: "Omae Wae Mou Shindeiru!")
 
+
+#Categories
+Category.create(name:"Social",description:"This projects must help the society")
+Category.create(name:"Educational",description:"Projects that can be applied to the public educational system")
+Category.create(name:"Environmental",description:"Projects that contribute to the earth healthy")
+
 #Projects
 Project.create(user_id: 1, title:"ELIA—the world’s most intuitive tactile reading system",description: "In 1829, Louis Braille published the first book introducing the braille system—and while the applications of braille have been immense, the system is designed around the outdated technologies of the 1800s.We've created a modern, efficient alternative that's incredibly easy to learn for people who have a visual impairment. ", goal_amount: 100000, status: "published", delivery_date: Date.parse("26/9/2018"))
 Project.create(user_id: 1, title:"FinalStraw, the world's first collapsible, reusable straw",description: "We are so excited about this project. We’ve had many sleepless nights making sure that everything is perfect. Still, we can’t foresee every problem so we’re committed to fixing any challenges that may arise during the fulfillment process.", goal_amount: 100000, status: "published", delivery_date: Date.parse("26/9/2018"))
 Project.create(user_id: 1, title:"Will Burtin - neglected giant of design",description: "Will Burtin might be the most important designer you’ve never heard of, and like so many visionaries, he was ahead of his time. As the authors of this new book, Will Burtin: Journey to Understanding, state: ‘Will Burtin’s contributions to design can be characterised as important as Albert Einstein’s contributions to science. While his brilliant discoveries in physics gave Einstein his reputation, Burtin’s scientific approach to design should have also given him a revolutionary place in design history.’", goal_amount: 100000, status: "published", delivery_date: Date.parse("26/9/2018"))
 Project.create(user_id: 1, title:"Neova | A Unique Connected Ring For Musicians",description: "Neova is a connected ring that identifies extremely natural hand gestures and faithfully interprets each subtlety into musical expression. This MIDI controller can be freely assigned to any effect from your DAW or hardware synthesizer. It results in a purposeful tool enabling new forms of creativity.", goal_amount: 100000, status: "published", delivery_date: Date.parse("26/9/2018"))
+
+#PROJECTS_CATEOGORIES
+
+ProjectCategory.create(project_id:1,category_id:1)
+ProjectCategory.create(project_id:2,category_id:2)
+ProjectCategory.create(project_id:2,category_id:2)
+ProjectCategory.create(project_id:3,category_id:3)
+ProjectCategory.create(project_id:4,category_id:1)
+ProjectCategory.create(project_id:4,category_id:3)
 
 #Promises
 
