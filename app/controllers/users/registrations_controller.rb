@@ -26,7 +26,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
    def destroy
-     super
+     user=User.find(params[:id])
+     user.destroy
+     redirect_to admin_url
    end
 
   # GET /resource/cancel
