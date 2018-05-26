@@ -130,9 +130,10 @@
                         user_name = "Sin perfil definido"
                     }
 
+                    var user_id=user_object["id"];
                     var user_email = user_object["email"]
                     var user_role = user_object["role_name"];
-                    var delete_button ="<a href=''><i class='center glyphicon glyphicon-remove'></i></a>";
+                    var delete_button ="<a href='/users/"+user_id+"' data-method='delete'><i class='center glyphicon glyphicon-remove'></i></a>";
                     tr.innerHTML += "<td>" + user_name + "</td><td>" + user_email + "</td><td>" + user_role + "</td><td>" +delete_button+ "<td>";
                     tbody.append(tr);
 
@@ -156,8 +157,10 @@
                     var project_url = project_jo["url"]
                     var user_jo = project_jo["user"]
                     var user_email = user_jo["email"];
-                    var delete_button = $("<tr><a href=>" + "aa" + "</a></tr>");
-                    tr.innerHTML += "<td><a href='/projects/"+ proj_id +"'>" + project_title + "</a></td><td><a href=" + user_email + "+>" + user_email + "</a></td><td>" + project_creation + "</td><td>" + project_status + "</td><td>" + "" + "</td><td></td>";
+                    var delete_button ="<a href='/projects/"+proj_id+"' data-method='delete'><i class='center glyphicon glyphicon-remove'></i></a>";
+                    var edit_button ="<a href='/projects/"+proj_id+"/edit'><i class='center glyphicon glyphicon-edit'></i></a>";
+
+                    tr.innerHTML += "<td><a href='/projects/"+ proj_id +"'>" + project_title + "</a></td><td><a href=" + user_email + "+>" + user_email + "</a></td><td>" + project_creation + "</td><td>" + project_status + "</td><td>" +edit_button+ "</td><td>"+delete_button+"</td>"
 
                     tbody.append(tr);
 

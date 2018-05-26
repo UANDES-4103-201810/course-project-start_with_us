@@ -10,6 +10,17 @@ end
 
 
   end
+
+
+  def delete_user
+    user=User.find(params[:id])
+
+    user.destroy
+    redirect_to admin_url
+  end
+
+
+
 def get_users
   users=User.all()
   users_response=[]

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+
+
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations"}
+
+  get '/users/:id/edit', to: "users/registrations/#edit"
+  delete '/users/:id(.:format)', to:"admin#delete_user"
 
   resources :categories
 
