@@ -25,7 +25,7 @@
     <div class="my_row">
       <p>
         <strong>Image:</strong>
-        <img src="<%= @content.image.url(:thumb) %>">
+        <img style="height: 300px;width: 300px;margin-left: 25  %" src="<%= @content.image %>">
       </p>
     </div>
   <% end %>
@@ -83,14 +83,13 @@
 
     <button class="my_right_button" id ="item_slider_button_right<%= counter.to_s %>" >
       <i class="glyphicon glyphicon-chevron-right"></i></button>
-    <button class="my_left_button" id ="item_slider_button_left<%= counter.to_s %>">
-      <i class="glyphicon glyphicon-chevron-left"></i></button>
+
       <% promise.items.each do |item| %>
 
       <% if value == 0 %>
-        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;margin-left: 55%;height: 160px;">
+        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;height: 160px;float:right;">
         <% else %>
-        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;margin-left: 55%;height: 160px;" hidden>
+        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;height: 160px;float:right;" hidden>
         <% end %>
         <% value += 1 %>
         <img style="height: 140px;width: 80px;position: absolute" src="<%= item.multimedia_content.image %>">
@@ -98,16 +97,19 @@
         <span style="position: absolute;margin-left: 90px;width: 130px">Description:<br/> <%= item.description %></span>
         </div>
       <% end %>
+    <button class="my_left_button" id ="item_slider_button_left<%= counter.to_s %>">
+      <i class="glyphicon glyphicon-chevron-left"></i></button>
     <p hidden id="item-len-<%= counter.to_s %>"><%= value.to_s %></p>
-      <div style="width: 50%;position: relative;margin-top: -150px;height: 100%">
+      <div style="width: 50%;position: relative;margin-top: 0px;height: 100%">
         <%= promise.description %>
       </div>
     <% if current_user %>
-    <%= link_to "Buy", '/payment/promises/' + promise.id.to_s, class: "btn btn-success", style: "float: right;margin-top: -50px;" %>
+    <%= link_to "Buy", '/payment/promises/' + promise.id.to_s, class: "btn btn-success", style: "float: left;margin-top: -50px;" %>
     <% end %>
       </div>
     <% counter += 1 %>
   <% end %>
+
   <p hidden id="promises-len"><%= counter.to_s %></p>
   <% if current_user %>
   <%= link_to 'Fund Project', '/payments/fund/' + @project.id.to_s, class: "btn btn-primary" %>

@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   def create
 
     @project = Project.create(project_params)
-    p = params[:project][:promises]
+    p = params[:project][:promise]
     if p != nil
       Promise.create(description: p[:description], quantity: p[:quantity], price: p[:price], project_id: @project.id)
     end

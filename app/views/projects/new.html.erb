@@ -42,7 +42,7 @@
     <label>Image</label>
     <%= pj.file_field :multimedia_content %>
     <br/>
-    <%= pj.fields_for :promises do |promise| %>
+    <%= pj.fields_for :promise do |promise| %>
     <table id="items_table" class="table">
       <thead>
         <tr><th>Description</th><th>Quantity</th><th>Price</th></tr>
@@ -52,7 +52,6 @@
    </tbody>
     </table>
     <% end %>
-    <a id="add_promise" style="margin-bottom: 10px;" class="btn btn-primary">Add Promise</a> <br/>
     <%= pj.submit "Create", :class=> "btn btn-success" %>
   <% end %>
     <br />
