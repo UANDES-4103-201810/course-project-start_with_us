@@ -48,22 +48,9 @@
         <tr><th>Description</th><th>Quantity</th><th>Price</th></tr>
       </thead>
       <tbody style="color: black">
-
-      </tbody>
+    <tr class="animated fadeIn"><td><%= promise.text_field :description %></td><td><%= promise.text_field :quantity %></td><td><%= promise.text_field :price %></td></tr>
+   </tbody>
     </table>
-      <script>
-          function AddPromises() {
-              var table = $("#items_table");
-              var row = '<tr class="animated fadeIn"><td><%= promise.text_field :description %></td><td><%= promise.text_field :quantity %></td><td><%= promise.text_field :price %></td></tr>';
-              table.append(row);
-          }
-
-          $(document).ready(function () {
-              $("#add_promise").click(function () {
-                  AddPromises();
-              });
-          });
-      </script>
     <% end %>
     <a id="add_promise" style="margin-bottom: 10px;" class="btn btn-primary">Add Promise</a> <br/>
     <%= pj.submit "Create", :class=> "btn btn-success" %>

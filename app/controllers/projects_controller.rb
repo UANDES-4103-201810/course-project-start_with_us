@@ -29,14 +29,18 @@ class ProjectsController < ApplicationController
   def create
 
     @project = Project.create(project_params)
-
-    categories=params[:categories]
-
-    categories.each do |cat|
-      cat=Category.find(cat)
-      @project.categories<<cat
+    p = params[:project][:promises]
+    if p != nil
+      Promise.create(description: p[:description], quantity: p[:quantity], price: p[:price], project_id: @project.id)
     end
-    puts @project.categories.as_json
+    categories=params[:categories]
+    if categories != nil
+      categories.each do |cat|
+        cat=Category.find(cat)
+        @project.category<<cat
+      end
+    end
+    puts @project.category.as_json
     respond_to do |format|
       if @project.save
         content = MultimediaContent.create(project_id: @project.id, profile_id: nil, item_id: nil, image: params[:project][:multimedia_content])
