@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   post '/wishlist/project/', to: "my_projects#add_to_wishlist"
   delete '/wishlist/project/', to: "my_projects#remove_from_wishlist"
   post '/projects/status/:id', to: "projects#status"
+  get '/projects/categories/search', to: "categories#search_by_category"
 
 end

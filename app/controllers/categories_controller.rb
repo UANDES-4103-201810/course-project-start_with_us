@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   # GET /categories.json
@@ -36,7 +35,16 @@ class CategoriesController < ApplicationController
       end
     end
   end
-
+  def search_by_category
+    category = Category.where(name: params["category"]).first
+    @projects = Project.all
+    if category != nil
+      @projects = category.project
+    else
+      flash[:category_error] = "No se encontro la categoria"
+    end
+    render :template => "projects/index"
+  end
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update

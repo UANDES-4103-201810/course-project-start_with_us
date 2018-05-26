@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
-  has_many :project_categories
-  has_many :projects,through: :project_categories
+  has_many :project_category
+  has_many :project,through: :project_category
 end

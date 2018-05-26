@@ -3,8 +3,8 @@ class Project < ApplicationRecord
   has_many :promises
   has_many :foundings
   has_many :multimedia_contents
-  has_many :project_categories
-  has_many :categories,through: :project_categories
+  has_many :project_category
+  has_many :category,through: :project_category
   validates :goal_amount, numericality: {greater_than: 0}
   validate :date_validate
 

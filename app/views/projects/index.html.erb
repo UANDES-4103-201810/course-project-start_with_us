@@ -1,5 +1,11 @@
 
 <div class="project_show_Table animated fadeInRight">
+  <p style="color: red"><%= flash[:category_error] %></p>
+  <%= form_tag "/projects/categories/search", method: "get" do |category| %>
+    <%= label_tag "Find by Category" %><br/>
+    <%= text_field_tag :category, "", style:"color:black;border-radius:12px" %>
+    <%= submit_tag "Search", style: "color:black;border-radius:12px" %>
+  <% end %>
 <h1 style="color: white;text-align: center;">Projects</h1>
 <p hidden id="notice-wishlist"></p>
 <table class="table">
@@ -14,9 +20,9 @@
     </tr>
   </thead>
 
-  <tbody style="color: white;">
-    <% @projects.each do |project| %>
-      <tr>
+  <tbody id="project_table" style="color: white;">
+    <% @projects.each_with_index do |project, index| %>
+      <tr id="row_data<%= index %>">
         <td><%= project.title %></td>
         <td><%= project.description %></td>
         <td>$ <%= project.goal_amount %></td>
@@ -59,6 +65,8 @@ function addToWishlist() {
       });
   });
 }
+
+
 $(document).ready(function () {
    addToWishlist();
 });
