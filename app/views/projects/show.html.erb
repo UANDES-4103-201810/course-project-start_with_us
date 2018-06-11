@@ -1,19 +1,21 @@
 
 <div class="project_view animated zoomIn">
-  <% if current_user.role.name == "Admin" %>
-    <div class="my_row">
-      <p>
-      <p style="color: green;" id="notice"><%= notice %></p>
-      <p style="color: red;"><%= flash[:error] %></p>
-      <h2 style="text-transform: uppercase"><%= @project.status %></h2>
-       <%= link_to '/projects/status/' +@project.id.to_s+'?method=accept' , method:"post", class:"btn btn-success", style:"border-radius: 12px", title:"Accept" do %>
-        <i class="glyphicon glyphicon-plus"></i>
-       <% end %>
-      <%= link_to '/projects/status/' +@project.id.to_s+'?method=delete', method:"post",class:"btn btn-danger", style:"border-radius: 12px", title:"Reject" do %>
-        <i class="glyphicon glyphicon-remove"></i>
-      <% end %>
-      </p>
-    </div>
+  <% if current_user != nil %>
+    <% if current_user.role.name == "Admin" %>
+      <div class="my_row">
+        <p>
+        <p style="color: green;" id="notice"><%= notice %></p>
+        <p style="color: red;"><%= flash[:error] %></p>
+        <h2 style="text-transform: uppercase"><%= @project.status %></h2>
+         <%= link_to '/projects/status/' +@project.id.to_s+'?method=accept' , method:"post", class:"btn btn-success", style:"border-radius: 12px", title:"Accept" do %>
+          <i class="glyphicon glyphicon-plus"></i>
+         <% end %>
+        <%= link_to '/projects/status/' +@project.id.to_s+'?method=delete', method:"post",class:"btn btn-danger", style:"border-radius: 12px", title:"Reject" do %>
+          <i class="glyphicon glyphicon-remove"></i>
+        <% end %>
+        </p>
+      </div>
+    <% end %>
   <% end %>
   <div class="my_row">
     <p>
@@ -25,7 +27,7 @@
     <div class="my_row">
       <p>
         <strong>Image:</strong>
-        <img style="height: 300px;width: 300px;margin-left: 25  %" src="<%= @content.image %>">
+        <img style="height: 300px;width: 300px;margin-left: 25px;  %" src="<%= @content.image %>">
       </p>
     </div>
   <% end %>
@@ -216,5 +218,6 @@ $(document).ready(function () {
 });
 
   </script>
+  </div>
 
 </div>

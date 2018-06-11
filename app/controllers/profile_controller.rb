@@ -3,6 +3,7 @@ class ProfileController < ApplicationController
     @user = User.find(params[:id])
     @content = MultimediaContent.where(profile_id: @user.profile.id).first
     @projects = @user.projects
+
   end
   def update
     profile = params[:user][:profile_attributes]
