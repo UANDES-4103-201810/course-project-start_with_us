@@ -1,0 +1,45 @@
+
+<%= render 'aside_menu', :selected_item=>3 do %>
+  <div class="col-sm-8" style="padding:0 0 0 0 ">
+
+    <div class="project_show_Table animated fadeIn">
+      <div style="color: green"><%= flash[:accepted_fund] %></div>
+      <div style="color: red"><%= flash[:rejected_fund] %></div>
+      <h1 style="color: white;text-align: center;"> Fund Request by <%= current_user.email %></h1>
+
+      <table class="table">
+        <tr><th>Project Title</th>
+          <th>User</th>
+
+          <th>Amount</th>
+
+          <th colspan="2">Actions</th>
+
+        </tr>
+        <%
+          if not @my_request.nil?
+              @my_request.each do |r| %>
+              <tr><td><%= link_to r.project[:title] ,project_url(r.project) %></td>
+                <td><%= link_to r.user[:email] , "/profile/" + r.user_id.to_s %>
+                </td>
+                <td>
+                  <%= r.mount %>
+                </td>
+                <td>
+                  <%= link_to "Accept", "/fund_request/accept/" + r.id.to_s, class: "btn btn-success", method: :post %>
+                  <%= link_to "Reject", "/fund_request/reject/" + r.id.to_s, class: "btn btn-danger", method: :post %>
+                </td>
+
+              </tr>
+            <% end
+               end
+                %>
+      </table>
+
+      <br>
+
+    </div>
+  </div>
+
+
+<% end %>

@@ -14,6 +14,15 @@ class MyProjectsController < ApplicationController
     return email.split('@')[0]
   end
 
+  def fund_request
+    @funds = Founding.where(state: "waiting")
+    @my_request = []
+    @funds.each do |f|
+      if f.project.user_id == current_user.id
+        @my_request.push(f)
+      end
+    end
+  end
 
   def my_wishlist
     @user = User.find(current_user.id)
@@ -31,6 +40,18 @@ class MyProjectsController < ApplicationController
     flash[:wishlist] = "Project was removed from your wishlist"
     redirect_to '/my_wishlist'
 
+  end
+  def accept_fund
+    @fund = Founding.find(params[:id])
+    @fund.update(state: "accepted")
+    flash[:accepted_fund] = "You have accepted the fund request!"
+    redirect_to '/fund_request'
+  end
+  def reject_fund
+    @fund = Founding.find(params[:id])
+    @fund.update(state: "rejected")
+    flash[:rejected_fund] = "You have rejected the fund request!"
+    redirect_to '/fund_request'
   end
 
   def add_to_wishlist

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :categories
 
   get '/my_projects', to: "my_projects#view_all", as:"my_projects"
-
+  get '/fund_request', to: "my_projects#fund_request", as:"fund_request"
   get '/my_wishlist', to: "my_projects#my_wishlist", as:"my_wishlist"
   get '/my_foundings', to: "my_projects#my_foundings", as:"my_foundings"
 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   patch '/edit_profile', to: "profile#update"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/payment/promises/:id', to: "payments#promises", as: "pay_promise"
-  post '/payment/pay', to: "payment#pay"
+  post '/payment/pay', to: "payments#pay"
 
   get '/payments/fund/:id', to: "payments#fund"
 
@@ -33,5 +33,8 @@ Rails.application.routes.draw do
   delete '/wishlist/project/', to: "my_projects#remove_from_wishlist"
   post '/projects/status/:id', to: "projects#status"
   get '/projects/categories/search', to: "categories#search_by_category"
+
+  post '/fund_request/reject/:id', to: "my_projects#reject_fund"
+  post '/fund_request/accept/:id', to: "my_projects#accept_fund"
 
 end
