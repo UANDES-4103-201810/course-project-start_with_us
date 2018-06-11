@@ -37,11 +37,11 @@ class CategoriesController < ApplicationController
   end
   def search_by_category
     category = Category.where(name: params["category"]).first
-    @projects = Project.all
+    @projects = Project.where("title LIKE ? OR description LIKE ?", "%#{params["category"]}%", "%#{params["category"]}%")
     if category != nil
       @projects = category.project
     else
-      flash[:category_error] = "No se encontro la categoria"
+
     end
     render :template => "projects/index"
   end
