@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_admin_or_quit
 def index
   @categories=Category.all
 end
@@ -18,6 +19,14 @@ end
     redirect_to admin_url
   end
 
+def is_admin_or_quit
+  if current_user == nil
+    redirect_to '/'
+  elsif current_user.role.name != "Admin"
+    redirect_to '/'
+  end
+
+end
 
 
 def get_users
