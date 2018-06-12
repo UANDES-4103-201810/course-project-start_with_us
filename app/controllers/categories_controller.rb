@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
     if category != nil
       @projects = category.project
     else
-
+cal
     end
     render :template => "projects/index"
   end

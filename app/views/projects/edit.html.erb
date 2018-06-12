@@ -1,19 +1,100 @@
-<h1>Editing Project</h1>
+<div class="edit_profile_panel">
+  <p style="color: green"><%= flash[:created_promise] %></p>
+  <p style="color: red"><%= flash[:deleted_promise] %></p>
 
-<%= form_for @project, method: "patch" do |pj| %>
-<label>Title</label>
-<%= pj.text_field :title %>
-<label>Description</label>
-<%= pj.text_field :description %>
-<label>Goal Amount</label>
-<%= pj.text_field :goal_amount %>
-<label>Status</label>
-<%= pj.text_field :status %>
-<label>Delivery Date</label>
-<%= pj.date_select :delivery_date %>
-<%= pj.submit "Update" %>
-<% end %>
+  <h1 style="padding-top: 10px">Editing Project</h1>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+  <%= form_for @project, method: "patch" do |pj| %>
+   <div class="my_row">
+    <label>Title</label>
+    <%= pj.text_field :title %>
+   </div>
+    <div class="my_row">
+  <label>Description</label>
+  <%= pj.text_field :description %>
+    </div>
+    <div class="my_row">
+  <label>Goal Amount</label>
+  <%= pj.text_field :goal_amount %>
+    </div>
+    <div class="my_row">
+      <label>Delivery Date</label>
+      <div style="color:black;">
+      <%= pj.date_select :delivery_date %>
+      </div>
+    </div>
+    <% if @project.promises.size() > 0 %>
+    <table>
+      <tr>
+        <th>Descripcion</th>
+        <th colspan="2">Acciones</th>
+      </tr>
+      <tr>
+        <% @project.promises.each do |p| %>
+        <tr>
+          <td><%= p.description %></td>
+          <td><%= link_to "", "/delete_promise?id=" + p.id.to_s + ";project_id=" + @project.id.to_s, method: :post, class: "btn btn-danger", title: "Delete" %></td>
+        </tr>
+        <% end %>
+      </tr>
+    </table>
+      <br>
+    <% end %>
+  <%= pj.submit "Update", style:"position:relative;right:3px;bottom:3px", class: "btn btn-success" %>
+  <% end %>
+  <button id="add_promise" class="btn btn-primary" type="button">Add Promise</button><br>
 
+  <%= link_to 'Show', @project %> |
+  <%= link_to 'Back', projects_path %>
+
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal animated fadeIn">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <%= form_tag("/create_promise") do |p| %>
+      <%= hidden_field_tag :project_id, @project.id %>
+      <%= label_tag("Description") %>
+      <%= text_field_tag :description %><br>
+      <%= label_tag("Image") %>
+      <%= file_field_tag :image %><br>
+      <%= label_tag("Price") %>
+      <%= text_field_tag :price %><br>
+      <%= label_tag("Quantity") %>
+      <%= text_field_tag :quantity %><br>
+      <%= submit_tag("Create!", class: "btn btn-success") %>
+    <% end %>
+  </div>
+
+</div>
+
+
+<script>
+function Modal(){
+    var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+    var btn = $("#add_promise");
+
+// Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    $(btn).click(function() {
+        modal.style.display = "block";
+    });
+
+}
+Modal();
+</script>

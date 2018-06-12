@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get '/fund_request', to: "my_projects#fund_request", as:"fund_request"
   get '/my_wishlist', to: "my_projects#my_wishlist", as:"my_wishlist"
   get '/my_foundings', to: "my_projects#my_foundings", as:"my_foundings"
-
+  post '/create_promise', to: "my_projects#create_promise"
+  post '/delete_promise', to: "my_projects#delete_promise"
   get '/admin', to: "admin#index", as:"admin"
   resources :projects
   get '/', to: "home#index", as:'home'
