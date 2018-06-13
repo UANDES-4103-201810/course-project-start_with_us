@@ -1,15 +1,27 @@
 class User < ApplicationRecord
   before_validation :default_role
-  has_one :wishlist, dependent: :destroy
+  has_one :wishlist
   belongs_to :role
-  has_one :profile, dependent: :destroy
-  has_many :projects, dependent: :destroy
-  accepts_nested_attributes_for :projects
-  has_many :credit_cards, dependent: :destroy
+  has_one :profile
+  has_many :projects
+  has_many :credit_cards
   accepts_nested_attributes_for :profile
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
+  before_create :create_token
+
+  def create_token
+    exist = true
+    hash_value = ""
+    while exist != nil
+      values = "123455678890abcdefghijklmoprstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ.+-_"
+      hash_value = (0...100).map { (65 + rand(26)).chr }.join
+      exist = User.find_by(token:hash_value)
+    end
+    self.token = hash_value
+  end
+
 
   def default_role
     if self.role_id == nil

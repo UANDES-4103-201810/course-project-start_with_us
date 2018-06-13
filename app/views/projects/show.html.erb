@@ -1,20 +1,28 @@
 
 <div class="project_view animated zoomIn">
-  <% if current_user.role.name == "Admin" %>
-    <div class="my_row">
-      <p>
-      <p style="color: green;" id="notice"><%= notice %></p>
-      <p style="color: red;"><%= flash[:error] %></p>
-      <h2 style="text-transform: uppercase"><%= @project.status %></h2>
-       <%= link_to '/projects/status/' +@project.id.to_s+'?method=accept' , method:"post", class:"btn btn-success", style:"border-radius: 12px", title:"Accept" do %>
-        <i class="glyphicon glyphicon-plus"></i>
-       <% end %>
-      <%= link_to '/projects/status/' +@project.id.to_s+'?method=delete', method:"post",class:"btn btn-danger", style:"border-radius: 12px", title:"Reject" do %>
-        <i class="glyphicon glyphicon-remove"></i>
-      <% end %>
-      </p>
-    </div>
+  <% if current_user != nil %>
+    <% if current_user.role.name == "Admin" %>
+      <div class="my_row">
+        <p>
+        <p style="color: green;" id="notice"><%= notice %></p>
+        <p style="color: red;"><%= flash[:error] %></p>
+        <h2 style="text-transform: uppercase"><%= @project.status %></h2>
+         <%= link_to '/projects/status/' +@project.id.to_s+'?method=accept' , method:"post", class:"btn btn-success", style:"border-radius: 12px", title:"Accept" do %>
+          <i class="glyphicon glyphicon-plus"></i>
+         <% end %>
+        <%= link_to '/projects/status/' +@project.id.to_s+'?method=delete', method:"post",class:"btn btn-danger", style:"border-radius: 12px", title:"Reject" do %>
+          <i class="glyphicon glyphicon-remove"></i>
+        <% end %>
+        </p>
+      </div>
+    <% end %>
   <% end %>
+  <% if @project.user == current_user %>
+    <div class="my_row">
+      <%= link_to "Edit!", "/projects/" + @project.id.to_s + "/edit", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+
   <div class="my_row">
     <p>
     <h2><%= @project.title %></h2>
@@ -25,7 +33,7 @@
     <div class="my_row">
       <p>
         <strong>Image:</strong>
-        <img src="<%= @content.image.url(:thumb) %>">
+        <img style="height: 300px;width: 300px;margin-left: 25px;  %" src="<%= @content.image %>">
       </p>
     </div>
   <% end %>
@@ -83,14 +91,13 @@
 
     <button class="my_right_button" id ="item_slider_button_right<%= counter.to_s %>" >
       <i class="glyphicon glyphicon-chevron-right"></i></button>
-    <button class="my_left_button" id ="item_slider_button_left<%= counter.to_s %>">
-      <i class="glyphicon glyphicon-chevron-left"></i></button>
+
       <% promise.items.each do |item| %>
 
       <% if value == 0 %>
-        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;margin-left: 55%;height: 160px;">
+        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;height: 160px;float:right;">
         <% else %>
-        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;margin-left: 55%;height: 160px;" hidden>
+        <div id="item<%= counter.to_s + value.to_s %>" style="overflow: hidden;width: 200px;height: 160px;float:right;" hidden>
         <% end %>
         <% value += 1 %>
         <img style="height: 140px;width: 80px;position: absolute" src="<%= item.multimedia_content.image %>">
@@ -98,16 +105,19 @@
         <span style="position: absolute;margin-left: 90px;width: 130px">Description:<br/> <%= item.description %></span>
         </div>
       <% end %>
+    <button class="my_left_button" id ="item_slider_button_left<%= counter.to_s %>">
+      <i class="glyphicon glyphicon-chevron-left"></i></button>
     <p hidden id="item-len-<%= counter.to_s %>"><%= value.to_s %></p>
-      <div style="width: 50%;position: relative;margin-top: -150px;height: 100%">
+      <div style="width: 50%;position: relative;margin-top: 0px;height: 100%">
         <%= promise.description %>
       </div>
     <% if current_user %>
-    <%= link_to "Buy", '/payment/promises/' + promise.id.to_s, class: "btn btn-success", style: "float: right;margin-top: -50px;" %>
+    <%= link_to "Buy", '/payment/promises/' + promise.id.to_s, class: "btn btn-success", style: "float: left;margin-top: -50px;" %>
     <% end %>
       </div>
     <% counter += 1 %>
   <% end %>
+
   <p hidden id="promises-len"><%= counter.to_s %></p>
   <% if current_user %>
   <%= link_to 'Fund Project', '/payments/fund/' + @project.id.to_s, class: "btn btn-primary" %>
@@ -214,5 +224,6 @@ $(document).ready(function () {
 });
 
   </script>
+  </div>
 
 </div>

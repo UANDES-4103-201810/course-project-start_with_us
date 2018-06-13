@@ -1,8 +1,10 @@
 <div class="promise_payment_form animated fadeInLeft">
   <%= form_for @credit_card, url: '/payment/pay', method: 'post' do |card| %>
-    <div style="height: 50px;width: 90%;margin-top: 30px"><strong>Credit Card Number</strong><%= card.text_field :number, class: "form-control", style: "width:50%;margin-left:30%;margin-top:-25px" %></div>
+    <%= hidden_field_tag :project, @project %>
+    <div style="height: 50px;width: 90%;margin-top: 30px"><strong>Ammount</strong><%= text_field_tag :ammount, "", class: "form-control", style: "width:50%;margin-left:30%;margin-top:-25px" %></div>
+    <div style="height: 50px;width: 90%"><strong>Credit Card Number</strong><%= card.text_field :number, class: "form-control", style: "width:50%;margin-left:30%;margin-top:-25px" %></div>
     <div><strong>Card Type</strong><div style="width: 50%; margin-left: 27%; margin-top: -25px"><%= card.select("card_type_id" ,CardType.all.collect {|p| [ p.company, p.id ] }, { include_blank: true }, {:class => "form-control"}) %></div></div>
     <div style="margin-top: 30px"><strong>Verification Code</strong><input style="width: 30%;margin-left: 27%; margin-top: -25px" class="form-control"></div>
-    <%= card.submit "Pay", :class => "btn btn-primary", style: "margin-top:30px;", disabled: true %>
+    <%= card.submit "Pay", :class => "btn btn-primary", style: "margin-top:30px;" %>
   <% end %>
 </div>

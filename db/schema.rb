@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180612080558) do
     t.integer "user_id"
     t.integer "mount"
     t.string "state"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_foundings_on_project_id"
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 20180612080558) do
     t.integer "project_id"
     t.integer "credit_card_id"
     t.integer "amount"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["credit_card_id"], name: "index_payments_on_credit_card_id"
@@ -156,6 +158,7 @@ ActiveRecord::Schema.define(version: 20180612080558) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "token"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

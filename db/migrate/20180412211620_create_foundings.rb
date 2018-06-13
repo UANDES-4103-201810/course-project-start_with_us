@@ -5,7 +5,7 @@ class CreateFoundings < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.integer :mount
       t.string :state
-
+      t.string :token
       t.timestamps
     end
   end

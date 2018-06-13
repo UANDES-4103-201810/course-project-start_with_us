@@ -6,7 +6,7 @@ class CreatePayments < ActiveRecord::Migration[5.1]
       t.references :project, foreign_key: true
       t.references :credit_card, foreign_key: true
       t.integer :amount
-
+      t.string :token
       t.timestamps
     end
   end
