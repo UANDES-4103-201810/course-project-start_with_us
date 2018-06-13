@@ -4,7 +4,7 @@ Role.create(name:"Admin")
 Role.create(name:"Publisher")
 
 #Users
-User.create(email:"jvejar1@miuandes.cl",password:"12312312a",role_id:1)
+User.create(email:"jvejar@miuandes.cl",password:"12312312a",role_id:1)
 User.create(email:"pgrand@miuandes.cl",password:"12312312a",role_id:2)
 User.create(email:"perro@miuandes.cl",password:"12312312a",role_id:1)
 User.create(email:"petersama@miuandes.cl",password:"12312312a",role_id:2)

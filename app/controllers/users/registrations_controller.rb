@@ -5,13 +5,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-   def new
+
+
+  def new
     @user = User.new
    end
 
   # POST /resource
   def create
-     super
+     super do |user|
+       name="Username"
+       last_name="Last name"
+       if data = session["devise.google_oauth2_data"]
+         user_info=data[:info]
+         name=user_info[:name]
+         last_name=user_info[:last_name]
+       end
+
+       profile=Profile.create(user:user,name:name,last_name:last_name)
+       MultimediaContent.create(profile:profile)
+     end
   end
 
   # GET /resource/edit

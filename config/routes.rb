@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users, path: 'users', controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations"}
-
+  devise_for :users, path: 'users', controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations",omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_scope :user do
+    get 'auth/google_oauth2/callback', to: 'users/sessions#create'
+  end
   get '/users/:id/edit', to: "users/registrations/#edit"
   delete '/users/:id(.:format)', to:"admin#delete_user"
 
@@ -33,5 +35,6 @@ Rails.application.routes.draw do
   post '/wishlist/project/', to: "my_projects#add_to_wishlist"
   delete '/wishlist/project/', to: "my_projects#remove_from_wishlist"
   post '/projects/status/:id', to: "projects#status"
+
 
 end
