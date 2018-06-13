@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
          last_name=user_info[:last_name]
        end
 
-       profile=Profile.create(user:user,name:name,last_name:last_name)
+       profile=Profile.create(user:user,name:name,last_name:last_name,about_me:"About_me")
        MultimediaContent.create(profile:profile)
      end
   end

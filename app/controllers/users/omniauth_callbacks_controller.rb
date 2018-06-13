@@ -54,7 +54,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user_info=data[:info]
         name=user_info[:name]
         last_name=user_info[:last_name]
-        profile=Profile.create(user:@user,name:name,last_name:last_name)
+        profile=Profile.create(user:@user,name:name,last_name:last_name,about_me:"About me")
         MultimediaContent.create(profile:profile)
       end
       sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
