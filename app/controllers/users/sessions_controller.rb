@@ -10,14 +10,10 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    puts request.env["omniauth.auth"].info
-    puts request.env["omniauth.auth"].uid
-
-    puts request.env["omniauth.auth"].credentials
 
     email = params[:user][:email]
     user = User.where(email: email).first
-    a=1/0
+
     if user.nil?
       redirect_to '/users/sign_in'
       flash[:notice] = "Invalid Email or Password"
