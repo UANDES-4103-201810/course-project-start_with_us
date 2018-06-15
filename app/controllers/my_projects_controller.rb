@@ -1,5 +1,6 @@
 class MyProjectsController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: :add_to_wishlist
 
   def index
 
@@ -47,7 +48,6 @@ class MyProjectsController < ApplicationController
     wishlist_project.destroy
     flash[:wishlist] = "Project was removed from your wishlist"
     redirect_to '/my_wishlist'
-
   end
   def accept_fund
     @fund = Founding.find(params[:id])
@@ -63,20 +63,50 @@ class MyProjectsController < ApplicationController
   end
 
   def add_to_wishlist
-    @user = User.find(current_user.id)
-    exist = WishlistProject.where(wishlist_id: @user.wishlist, project_id: params[:id]).first
+
+    @user = User.find (current_user.id)
+
+    if @user.nil?
+      flash_notice="You must sign in"
+      value = {:"success" => "exist",flash:flash_notice}
+      puts flash
+      render :json => value
+
+    end
     wishlist = @user.wishlist
-    if !wishlist.nil?
+
+    if wishlist.nil?
       Wishlist.create(user_id: @user.id)
       wishlist = @user.wishlist
+      puts wishlist.nil?
     end
-    if !exist.nil?
-      value = {:"success" => "exist"}
+
+
+    project_id=params[:id]
+
+    the_project=Project.find_by(id:project_id,user_id:@user.id)
+
+    puts the_project
+    if !the_project.nil?
+      flash_notice="You cannot add your project to wishlist"
+      value = {:"success" => "exist",flash:flash_notice}
       render :json => value
       return false
     end
+
+    exist = WishlistProject.find_by(wishlist_id:wishlist.id, project_id: project_id)
+
+    if !exist.nil?
+      flash_notice="The project already exists in your wishlist"
+      value = {:"success" => "exist",flash:flash_notice}
+
+      render :json => value
+      return false
+    end
+
+    flash_notice="Project added to wishlist"
     add = WishlistProject.create(wishlist_id: @user.wishlist.id, project_id: params[:id])
-    value = {:"success" => true}
+    value = {:"success" => true,flash:flash_notice}
     render :json => value
   end
   def create_promise

@@ -18,6 +18,8 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    set_category
+
   end
 
   # POST /categories
@@ -41,13 +43,13 @@ class CategoriesController < ApplicationController
     if category != nil
       @projects = category.project
     else
-cal
     end
     render :template => "projects/index"
   end
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    set_category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to '/admin', notice: 'Category was successfully updated.' }
@@ -62,7 +64,8 @@ cal
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    @category.destroy
+    set_category
+    @category.delete
     respond_to do |format|
       format.html { redirect_to admin_url+"/#categories_div", notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }

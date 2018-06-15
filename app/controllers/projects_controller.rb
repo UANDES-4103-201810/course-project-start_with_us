@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
   # GET /projects
   # GET /projects.json
   def index
@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
   def create
 
     @project = Project.create(project_params)
+    @project.update(status:"waiting")
     p = params[:project][:promise]
     if p != nil
       Promise.create(description: p[:description], quantity: p[:quantity], price: p[:price], project_id: @project.id)
@@ -72,9 +73,11 @@ class ProjectsController < ApplicationController
     if method == "delete"
       project.update(status:"rejected")
       flash[:error] = "Project was Rejected"
+      project.save
       redirect_to "/projects/" + project.id.to_s
     elsif method == "accept"
       project.update(status:"published")
+      project.save
       flash[:notice] = "Project was Accepted"
       redirect_to "/projects/" + project.id.to_s
     end
@@ -86,7 +89,7 @@ class ProjectsController < ApplicationController
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { head   :no_content }
     end
   end
 

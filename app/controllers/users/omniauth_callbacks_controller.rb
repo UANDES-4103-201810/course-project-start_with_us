@@ -45,8 +45,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #
       # end
 
-      puts("ENTROO")
-
       profile=Profile.find_by(user_id:@user.id)
       puts profile
       if(profile.nil?)
@@ -61,7 +59,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: "Google_oauth2") if is_navigational_format?
     else
 
-      puts("ELSE")
       session["devise.google_oauth2_data"] = request.env["omniauth.auth"].except("extra")
       redirect_to new_user_registration_url
     end
