@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
-
-
+  get '/404', :to => 'application#page_not_found'
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations",omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'auth/google_oauth2/callback', to: 'users/sessions#create'
   end
   get '/users/:id/edit', to: "users/registrations/#edit"
-
   resources :categories
-
   get '/my_projects', to: "my_projects#view_all", as:"my_projects"
   get '/fund_request', to: "my_projects#fund_request", as:"fund_request"
   get '/my_wishlist', to: "my_projects#my_wishlist", as:"my_wishlist"
   get '/my_foundings', to: "my_projects#my_foundings", as:"my_foundings"
   post '/create_promise', to: "my_projects#create_promise"
   post '/delete_promise', to: "my_projects#delete_promise"
+  post '/create_item', to: "my_projects#create_item"
+
   get '/admin', to: "admin#index", as:"admin"
   resources :projects
   get '/', to: "home#index", as:'home'

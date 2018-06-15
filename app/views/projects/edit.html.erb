@@ -1,7 +1,7 @@
 <div class="edit_profile_panel">
   <p style="color: green"><%= flash[:created_promise] %></p>
   <p style="color: red"><%= flash[:deleted_promise] %></p>
-
+  <p style="color: green"><%= flash[:item_created] %></p>
   <h1 style="padding-top: 10px">Editing Project</h1>
 
   <%= form_for @project, method: "patch" do |pj| %>
@@ -33,7 +33,10 @@
         <% @project.promises.each do |p| %>
         <tr>
           <td><%= p.description %></td>
-          <td><%= link_to "", "/delete_promise?id=" + p.id.to_s + ";project_id=" + @project.id.to_s, method: :post, class: "btn btn-danger", title: "Delete" %></td>
+          <td><%= link_to "", "/delete_promise?id=" + p.id.to_s + ";project_id=" + @project.id.to_s, method: :post, class: "btn btn-danger", title: "Delete" %>
+            <button id="add_item" data="<%= p.id.to_s %>" class="btn btn-primary" type="button">Add Item</button><br>
+
+          </td>
         </tr>
         <% end %>
       </tr>
@@ -71,13 +74,55 @@
 
 </div>
 
+<!-- The Modal -->
+<div id="itemModal" class="modal animated fadeIn">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <%= form_tag("/create_item", :method=> :post, multipart:true ) do |p| %>
+      <%= hidden_field_tag :project_id, @project.id %>
+      <%= hidden_field_tag :promise_id %>
+      <%= label_tag("Name") %>
+      <%= text_field_tag :name %><br>
+      <%= label_tag("Image") %>
+      <%= file_field_tag :image%><br>
+      <%= submit_tag("Create!", class: "btn btn-success") %>
+    <% end %>
+  </div>
+
+</div>
 <script>
 function Modal(){
+
+    var item = document.getElementById('itemModal');
+
+// Get the button that opens the modal
+    var btn1 = $("[id^=add_ite]");
+
+// Get the <span> element that closes the modal
+    var span1 = document.getElementsByClassName("close")[0];
+    span1.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    $(btn1).click(function() {
+        var value = $(this).attr('data');
+        console.log(value);
+        $("#promise_id").val(value);
+        item.style.display = "block";
+    });
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == item) {
+            item.style.display = "none";
+        }
+    }
+
     var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
-    var btn = $("#add_promise");
+    var btn = $("[id^=add_promis]");
 
 // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];

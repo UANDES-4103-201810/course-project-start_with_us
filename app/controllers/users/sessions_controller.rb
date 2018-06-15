@@ -10,7 +10,6 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-
     email = params[:user][:email]
     user = User.where(email: email).first
 

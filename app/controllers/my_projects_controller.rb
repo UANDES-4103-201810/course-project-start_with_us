@@ -126,4 +126,16 @@ class MyProjectsController < ApplicationController
     redirect_to '/projects/' + params[:project_id].to_s + '/edit'
 
   end
+
+  def create_item
+    promise = params[:promise_id]
+    image = params[:image]
+    name = params[:name]
+    item = Item.create(promise_id:promise, name:name)
+    multimedia = MultimediaContent.create(item_id:item.id, name:name ,image:image)
+    flash[:item_created] = "The item was created!"
+    redirect_to '/projects/' + params[:project_id].to_s + '/edit'
+  end
+
+
 end
